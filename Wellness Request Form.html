@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Wellness Center Request</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      /* Ultra-Premium Fremont Palette */
+      --primary-color: #1a5121;
+      --secondary-color: #2E7D32;
+      --accent-color: #FBC02D;
+
+      --bg-surface: #e2e8f0;
+      --card-bg: #ffffff;
+
+      --border-subtle: #e2e8f0;
+      --border-focus: #1B5E20;
+
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+
+      --ring-color: rgba(46, 125, 50, 0.2);
+
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      --shadow-premium: 0 20px 40px -12px rgba(27, 94, 32, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.02);
+
+      --error-color: #ef4444;
+      --success-color: #22c55e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: var(--bg-surface);
+      background-image:
+        radial-gradient(circle at 0% 0%, rgba(76, 175, 80, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(251, 192, 45, 0.06) 0%, transparent 50%);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 24px;
+      -webkit-font-smoothing: antialiased;
+      user-select: none;
+    }
+
+    /* Subtle Animated Glow behind container */
+    .glow-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: radial-gradient(circle at 50% -20%, rgba(27, 94, 32, 0.08), transparent 60%);
+      pointer-events: none;
+    }
+
+    .container {
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 48px;
+      width: 100%;
+      max-width: 750px;
+      box-shadow: var(--shadow-premium);
+      position: relative;
+      overflow: hidden;
+      animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes slideUpFade {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Elegant Language Toggle */
+    .lang-toggle-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 32px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .lang-toggle {
+      display: inline-flex;
+      background: #f8fafc;
+      border: 1px solid var(--border-subtle);
+      border-radius: 100px;
+      padding: 4px;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      padding: 8px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-radius: 100px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      font-family: 'Inter', sans-serif;
+    }
+
+    .lang-btn.active {
+      background: white;
+      color: var(--primary-color);
+      box-shadow: var(--shadow-sm), 0 0 0 1px rgba(0, 0, 0, 0.02);
+    }
+
+    body.lang-en .lang-es {
+      display: none !important;
+    }
+
+    body.lang-es .lang-en {
+      display: none !important;
+    }
+
+    /* Beautiful Headers */
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .header h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--primary-color);
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .header p {
+      font-size: 16px;
+      color: var(--text-muted);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    /* Form Layout & Spacing */
+    .info-alert {
+      background: #fffbeb;
+      border: 1px solid #fef08a;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .info-alert-text {
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: #854d0e;
+    }
+
+    .info-alert-text strong {
+      color: #713f12;
+      font-weight: 700;
+    }
+
+    /* Weekly Hours Display */
+    .hours-card {
+      background: #f8fafc;
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 16px 20px;
+      margin-bottom: 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hours-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .status-dot {
+      --dot-color: var(--success-color);
+      --dot-ring: rgba(34, 197, 94, 0.2);
+      --dot-pulse: rgba(34, 197, 94, 0.4);
+
+      width: 12px;
+      height: 12px;
+      background: var(--dot-color);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px var(--dot-ring);
+      animation: pulse 2s infinite;
+    }
+
+    .status-dot.closed {
+      --dot-color: #ef4444;
+      --dot-ring: rgba(239, 68, 68, 0.2);
+      --dot-pulse: rgba(239, 68, 68, 0.4);
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 var(--dot-pulse);
+      }
+
+      70% {
+        box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+      }
+    }
+
+    .hours-card h3 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      color: var(--primary-color);
+      font-size: 18px;
+    }
+
+    .hours-card p {
+      font-size: 15px;
+      color: var(--text-main);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    form {
+      position: relative;
+      z-index: 2;
+    }
+
+    .form-group {
+      margin-bottom: 28px;
+    }
+
+    .form-group label {
+      display: block;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 12px;
+      color: var(--primary-color);
+      letter-spacing: -0.01em;
+    }
+
+    .input-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    /* High-End Inputs */
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 16px 20px;
+      background: #f8fafc;
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text-main);
+      transition: all 0.2s ease;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.01);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 70px;
+      line-height: 1.5;
+    }
+
+    input[type="text"]::placeholder,
+    textarea::placeholder {
+      color: #94a3b8;
+      font-weight: 400;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus {
+      outline: none;
+      background: #ffffff;
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 4px var(--ring-color);
+    }
+
+    input[type="text"]:hover:not(:focus),
+    textarea:hover:not(:focus) {
+      border-color: #cbd5e1;
+    }
+
+    /* Premium Radio Cards (The "Stripe" look) */
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .radio-label {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .radio-label input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .radio-card {
+      display: flex;
+      align-items: flex-start;
+      padding: 20px;
+      background: #ffffff;
+      border: 2px solid var(--border-subtle);
+      border-radius: 16px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .radio-label:hover .radio-card {
+      border-color: #cbd5e1;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .radio-label input[type="radio"]:checked+.radio-card {
+      background: #f1fdf4;
+      border-color: var(--primary-color);
+      box-shadow: 0 4px 16px rgba(27, 94, 32, 0.08);
+      transform: translateY(-2px);
+    }
+
+    /* Emojis in a premium circular badge container */
+    .radio-emoji {
+      font-size: 22px;
+      margin-right: 16px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+
+    .radio-label input[type="radio"]:checked+.radio-card .radio-emoji {
+      border-color: rgba(27, 94, 32, 0.3);
+      background: #e8f5e9;
+      transform: scale(1.05);
+    }
+
+    .radio-content {
+      flex: 1;
+      padding-top: 2px;
+    }
+
+    .radio-text {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--text-main);
+      transition: color 0.2s ease;
+    }
+
+    .radio-label input[type="radio"]:checked+.radio-card .radio-text {
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    /* "App-like" Submit Button */
+    .submit-btn {
+      width: 100%;
+      padding: 18px;
+      background: linear-gradient(135deg, #166534, #14532d);
+      color: white;
+      border: none;
+      border-radius: 14px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 8px 24px -4px rgba(20, 83, 45, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+      margin-top: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .submit-btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+      transform: skewX(-20deg);
+      transition: 0.5s;
+    }
+
+    .submit-btn:hover::after {
+      left: 150%;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px -4px rgba(20, 83, 45, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    }
+
+    .submit-btn:active {
+      transform: translateY(1px);
+      box-shadow: 0 4px 12px rgba(20, 83, 45, 0.4);
+    }
+
+    /* Spinner */
+    .spinner {
+      display: none;
+      width: 22px;
+      height: 22px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.8s infinite linear;
+    }
+
+    @keyframes spin {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Success Screen */
+    .success-screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px;
+      z-index: 10;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .success-screen.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .success-icon {
+      font-size: 72px;
+      margin-bottom: 24px;
+      animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      transform: scale(0);
+      filter: drop-shadow(0 10px 15px rgba(34, 197, 94, 0.2));
+    }
+
+    @keyframes popIn {
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .success-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 32px;
+      color: var(--primary-color);
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .success-desc {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Error UI */
+    .error-shake {
+      animation: shake 0.5s cubic-bezier(.36, .07, .19, .97) both;
+      border-color: var(--error-color) !important;
+      background: #fef2f2 !important;
+    }
+
+    @keyframes shake {
+
+      10%,
+      90% {
+        transform: translate3d(-1px, 0, 0);
+      }
+
+      20%,
+      80% {
+        transform: translate3d(2px, 0, 0);
+      }
+
+      30%,
+      50%,
+      70% {
+        transform: translate3d(-4px, 0, 0);
+      }
+
+      40%,
+      60% {
+        transform: translate3d(4px, 0, 0);
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 500px) {
+      body {
+        padding: 16px;
+      }
+
+      .container {
+        padding: 32px 24px;
+        border-radius: 20px;
+      }
+
+      .input-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .input-row .form-group {
+        margin-bottom: 20px;
+      }
+
+      .radio-card {
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body class="lang-en">
+
+  <div class="orb-1"></div>
+  <div class="orb-2"></div>
+  <div class="orb-3"></div>
+
+  <div class="container">
+    <div class="lang-toggle-wrapper">
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btn-en" onclick="setLang('en')">English</button>
+        <button class="lang-btn" id="btn-es" onclick="setLang('es')">Español</button>
+      </div>
+    </div>
+
+    <div class="header">
+      <h1>
+        <span class="lang-en">Wellness Center Visit Request</span>
+        <span class="lang-es">Solicitud de Visita al Centro de Bienestar</span>
+      </h1>
+      <p>
+        <span class="lang-en">We're here for you. Tell us what you need.</span>
+        <span class="lang-es">Estamos aquí para ti. Dinos lo que necesitas.</span>
+      </p>
+    </div>
+
+    <div class="info-alert">
+      <div class="info-alert-text lang-en">
+        <strong>Important:</strong> Please fill out this form if you would like to have someone from the Wellness Center
+        check in with you or to schedule a break. <br><br>
+        If you feel this is an emergency, please do not fill out this form. Instead, reach out to a trusted adult
+        immediately. We will try our best to call you out within 24 hours.
+      </div>
+      <div class="info-alert-text lang-es">
+        <strong>Importante:</strong> Por favor complete este formulario si desea hablar con alguien del Centro de
+        Bienestar o para programar un receso. <br><br>
+        Si considera que se trata de una emergencia, no completes este formulario. En cambio, comuníquese de inmediato
+        con un adulto de confianza. Haremos todo lo posible por llamarlo dentro de las 24 horas.
+      </div>
+    </div>
+
+    <!-- Editable Weekly Hours -->
+    <div class="hours-card">
+      <div class="hours-header">
+        <div class="status-dot" id="statusDot"></div>
+        <h3 class="lang-en" id="statusTextEn">Currently Open</h3>
+        <h3 class="lang-es" id="statusTextEs">Actualmente Abierto</h3>
+      </div>
+      <p class="lang-en"><strong>Monday - Friday:</strong> 8:00 AM - 4:30 PM</p>
+      <p class="lang-es"><strong>Lunes - Viernes:</strong> 8:00 AM - 4:30 PM</p>
+    </div>
+
+    <form id="wellness-form" autocomplete="off">
+
+      <div class="input-row">
+        <div class="form-group">
+          <label for="firstName">
+            <span class="lang-en">First Name *</span>
+            <span class="lang-es">Nombre *</span>
+          </label>
+          <input type="text" id="firstName" name="entry.1232825348" required autofocus placeholder="...">
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">
+            <span class="lang-en">Last Name *</span>
+            <span class="lang-es">Apellido *</span>
+          </label>
+          <input type="text" id="lastName" name="entry.248501466" required placeholder="...">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>
+          <span class="lang-en">How urgent is this check-in? *</span>
+          <span class="lang-es">¿Qué tan urgente es tu necesidad de hablar? *</span>
+        </label>
+
+        <div class="radio-group" id="urgency-group">
+
+          <!-- Option 1: Urgent -->
+          <label class="radio-label">
+            <input type="radio" name="entry.1925342282"
+              value="🔴I need to see someone today. I am having a very hard time and cannot focus. Necesito ver a alguien hoy. Estoy pasando por un momento muy difícil y no puedo concentrarme."
+              required>
+            <div class="radio-card">
+              <div class="radio-emoji">🔴</div>
+              <div class="radio-content">
+                <div class="radio-text">
+                  <span class="lang-en">I need to see someone today. I am having a very hard time and cannot
+                    focus.</span>
+                  <span class="lang-es">Necesito ver a alguien hoy. Estoy pasando por un momento muy difícil y no puedo
+                    concentrarme.</span>
+                </div>
+              </div>
+            </div>
+          </label>
+
+          <!-- Option 2: Next Day -->
+          <label class="radio-label">
+            <input type="radio" name="entry.1925342282"
+              value="🟡I would like to check in sometime in the next day or two. It's important, but I am okay for right now. Me gustaría comunicarme en los próximos días. Es importante, pero por mientras estoy bien.">
+            <div class="radio-card">
+              <div class="radio-emoji">🟡</div>
+              <div class="radio-content">
+                <div class="radio-text">
+                  <span class="lang-en">I would like to check in sometime in the next day or two. It's important, but I
+                    am okay for right now.</span>
+                  <span class="lang-es">Me gustaría comunicarme en los próximos días. Es importante, pero por mientras
+                    estoy bien.</span>
+                </div>
+              </div>
+            </div>
+          </label>
+
+          <!-- Option 3: No Rush -->
+          <label class="radio-label">
+            <input type="radio" name="entry.1925342282"
+              value="🟢No rush. I just want to schedule a general check-in when you have free time or schedule a break. Sin prisa. Solo quiero programar una reunión general cuando tengas tiempo libre o simplemente programar un descanso.">
+            <div class="radio-card">
+              <div class="radio-emoji">🟢</div>
+              <div class="radio-content">
+                <div class="radio-text">
+                  <span class="lang-en">No rush. I just want to schedule a general check-in when you have free time or
+                    schedule a break.</span>
+                  <span class="lang-es">Sin prisa. Solo quiero programar una reunión general cuando tengas tiempo libre
+                    o simplemente programar un descanso.</span>
+                </div>
+              </div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="optionalText">
+          <span class="lang-en">Anything else you would like to tell us? (Optional)</span>
+          <span class="lang-es">¿Alguna otra cosa que desees decirnos? (Opcional)</span>
+        </label>
+        <textarea id="optionalText" name="entry.417097114" placeholder="..."></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submitBtn">
+        <span class="btn-text lang-en">Submit Request</span>
+        <span class="btn-text lang-es">Enviar Solicitud</span>
+        <div class="spinner" id="btnSpinner"></div>
+      </button>
+
+    </form>
+
+    <!-- Success Screen -->
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">✨</div>
+      <h2 class="success-title">
+        <span class="lang-en">Got it!</span>
+        <span class="lang-es">¡Entendido!</span>
+      </h2>
+      <p class="success-desc">
+        <span class="lang-en">Your request has been received safely.<br>We will reach out to you soon.</span>
+        <span class="lang-es">Tu solicitud ha sido recibida.<br>Nos comunicaremos contigo pronto.</span>
+      </p>
+    </div>
+
+  </div>
+
+  <script>
+    // --- Hours Status ---
+    async function updateStatus() {
+      const now = new Date();
+      const day = now.getDay(); // 0 is Sunday, 1 is Monday... 6 is Saturday
+      const hour = now.getHours();
+      const minutes = now.getMinutes();
+
+      // Open Mon-Fri 8:00 AM to 4:30 PM
+      const isWeekday = day >= 1 && day <= 5;
+      const pastOpenTime = hour > 8 || (hour === 8 && minutes >= 0);
+      const beforeCloseTime = hour < 16 || (hour === 16 && minutes < 30);
+
+      let isOpen = isWeekday && pastOpenTime && beforeCloseTime;
+      let customMessage = null;
+
+      // --- Central Master Switch Check ---
+      try {
+        const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQadc55Jy_BcBeMW7Y35vjqQoW0WWxULCjEZXrrzbAnkjC1VDdXiskQyOxmh6HO6HiqMLOMNb53Wj6C/pub?gid=526632501&single=true&output=csv';
+        
+        // Use 'no-store' cache string and dynamic timestamp to force local update, but NO custom headers to avoid CORS blocks
+        const response = await fetch(sheetUrl + '&t=' + new Date().getTime(), {
+          cache: "no-store"
+        });
+        const data = await response.text();
+        
+        // Clean up the data (remove quotes, extra spaces, line breaks)
+        const sheetText = data ? data.replace(/["\r\n]/g, '').trim() : '';
+
+        // If the cell contains anything other than 'AUTO' or empty, use it as a custom closed message
+        if (sheetText !== '' && sheetText.toUpperCase() !== 'AUTO') {
+          isOpen = false;
+          customMessage = sheetText;
+        }
+      } catch (err) {
+        console.error('Could not fetch central status:', err);
+        // Silently fall back to normal automated hours if offline
+      }
+
+      const statusDot = document.getElementById('statusDot');
+      const statusTextEn = document.getElementById('statusTextEn');
+      const statusTextEs = document.getElementById('statusTextEs');
+
+      if (!statusDot || !statusTextEn || !statusTextEs) return;
+
+      if (isOpen) {
+        statusDot.classList.remove('closed');
+        statusTextEn.textContent = 'Currently Open';
+        statusTextEn.style.color = 'var(--primary-color)';
+        statusTextEs.textContent = 'Actualmente Abierto';
+        statusTextEs.style.color = 'var(--primary-color)';
+      } else {
+        statusDot.classList.add('closed');
+        // Display the custom message if you typed one, otherwise default to "Currently Closed"
+        statusTextEn.textContent = customMessage ? customMessage : 'Currently Closed';
+        statusTextEn.style.color = 'var(--error-color)';
+        statusTextEs.textContent = customMessage ? customMessage : 'Actualmente Cerrado';
+        statusTextEs.style.color = 'var(--error-color)';
+      }
+    }
+
+    updateStatus();
+    setInterval(updateStatus, 60000);
+
+    // --- UI Controls ---
+    function setLang(lang) {
+      document.body.classList.remove('lang-en', 'lang-es');
+      document.body.classList.add('lang-' + lang);
+      document.getElementById('btn-en').classList.remove('active');
+      document.getElementById('btn-es').classList.remove('active');
+      document.getElementById('btn-' + lang).classList.add('active');
+    }
+
+    // --- Format Input ---
+    const firstName = document.getElementById('firstName');
+    const lastName = document.getElementById('lastName');
+
+    function capitalize(e) {
+      if (e.target.value) {
+        e.target.value = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
+      }
+    }
+
+    // Jump between inputs quickly
+    firstName.addEventListener('blur', capitalize);
+    firstName.addEventListener('keydown', e => {
+      if (e.key === 'Enter') { e.preventDefault(); lastName.focus(); }
+    });
+
+    lastName.addEventListener('blur', capitalize);
+    lastName.addEventListener('keydown', e => {
+      if (e.key === 'Enter') { e.preventDefault(); lastName.blur(); }
+    });
+
+    // --- Form Submission logic ---
+    const form = document.getElementById('wellness-form');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnTextEn = submitBtn.querySelector('.lang-en');
+    const btnTextEs = submitBtn.querySelector('.lang-es');
+    const btnSpinner = document.getElementById('btnSpinner');
+    const successScreen = document.getElementById('successScreen');
+    const urgencyGroup = document.getElementById('urgency-group');
+
+    // Auto submission capability (optional, but requested on standard forms)
+    // Here we'll rely on the standard submit button, but let's shake empty required fields
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      let isValid = true;
+      if (!firstName.value.trim()) { firstName.classList.add('error-shake'); isValid = false; }
+      if (!lastName.value.trim()) { lastName.classList.add('error-shake'); isValid = false; }
+
+      const radioChecked = document.querySelector('input[name="entry.1925342282"]:checked');
+      if (!radioChecked) {
+        urgencyGroup.classList.add('error-shake');
+        isValid = false;
+      }
+
+      setTimeout(() => {
+        firstName.classList.remove('error-shake');
+        lastName.classList.remove('error-shake');
+        urgencyGroup.classList.remove('error-shake');
+      }, 500);
+
+      if (!isValid) return;
+
+      // Loading state
+      btnTextEn.style.display = 'none';
+      btnTextEs.style.display = 'none';
+      btnSpinner.style.display = 'block';
+      submitBtn.style.pointerEvents = 'none';
+      submitBtn.style.opacity = '0.8';
+
+      // Send Request
+      const formData = new FormData(form);
+      const encodedData = new URLSearchParams(formData).toString();
+
+      // Target Form Action URL (verified exact path)
+      const actionUrl = 'https://docs.google.com/forms/d/e/1FAIpQLScMRPe4mLOhPaQNVtiJLQJAQlJMrjXExxro9tdYJwcvGpUAuA/formResponse';
+
+      fetch(actionUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: encodedData
+      })
+        .then(() => {
+          // Show Success
+          successScreen.classList.add('active');
+
+          // Reset app after 3.5 seconds
+          setTimeout(() => {
+            form.reset();
+            successScreen.classList.remove('active');
+            btnSpinner.style.display = 'none';
+
+            if (document.body.classList.contains('lang-en')) {
+              btnTextEn.style.display = 'block';
+            } else {
+              btnTextEs.style.display = 'block';
+            }
+
+            submitBtn.style.pointerEvents = 'auto';
+            submitBtn.style.opacity = '1';
+            window.scrollTo(0, 0);
+          }, 3500);
+        })
+        .catch(err => {
+          console.error('Submission failed', err);
+          alert('Something went wrong. Please alert the staff.');
+
+          btnSpinner.style.display = 'none';
+
+          if (document.body.classList.contains('lang-en')) {
+            btnTextEn.style.display = 'block';
+          } else {
+            btnTextEs.style.display = 'block';
+          }
+
+          submitBtn.style.pointerEvents = 'auto';
+          submitBtn.style.opacity = '1';
+        });
+    });
+  </script>
+</body>
+
+</html>
