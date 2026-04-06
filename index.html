@@ -633,8 +633,10 @@
         <h3 class="lang-en" id="statusTextEn">Currently Open</h3>
         <h3 class="lang-es" id="statusTextEs">Actualmente Abierto</h3>
       </div>
-      <p class="lang-en"><strong>Monday - Friday:</strong> 8:00 AM - 4:30 PM</p>
-      <p class="lang-es"><strong>Lunes - Viernes:</strong> 8:00 AM - 4:30 PM</p>
+      <p class="lang-en"><strong>Normal Hours:</strong> Monday - Friday, 8:00 AM - 4:30 PM</p>
+      <p class="lang-es"><strong>Horario Normal:</strong> Lunes - Viernes, 8:00 AM - 4:30 PM</p>
+      <p class="hours-note lang-en" style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">*(Unless noted above)*</p>
+      <p class="hours-note lang-es" style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">*(A menos que se indique arriba)*</p>
     </div>
 
     <form id="wellness-form" autocomplete="off">
@@ -769,7 +771,8 @@
 
       // --- Central Master Switch Check ---
       try {
-        const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQadc55Jy_BcBeMW7Y35vjqQoW0WWxULCjEZXrrzbAnkjC1VDdXiskQyOxmh6HO6HiqMLOMNb53Wj6C/pub?gid=526632501&single=true&output=csv';
+        // Enforce range=A1 so it only ever reads cell A1, ignoring data typed elsewhere in the sheet
+        const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQadc55Jy_BcBeMW7Y35vjqQoW0WWxULCjEZXrrzbAnkjC1VDdXiskQyOxmh6HO6HiqMLOMNb53Wj6C/pub?gid=526632501&single=true&output=csv&range=A1';
         const response = await fetch(sheetUrl + '&t=' + new Date().getTime(), {
           cache: "no-store",
           headers: { 'Cache-control': 'no-cache', 'Pragma': 'no-cache' }
