@@ -37,6 +37,9 @@
 
       --error-color: #ef4444;
       --success-color: #22c55e;
+      --warning-color: #f59e0b;
+      --info-color: #3b82f6;
+      --special-color: #a855f7;
     }
 
     * {
@@ -59,17 +62,6 @@
       padding: 24px;
       -webkit-font-smoothing: antialiased;
       user-select: none;
-    }
-
-    /* Subtle Animated Glow behind container */
-    .glow-bg {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      background: radial-gradient(circle at 50% -20%, rgba(27, 94, 32, 0.08), transparent 60%);
-      pointer-events: none;
     }
 
     .container {
@@ -96,7 +88,6 @@
       }
     }
 
-    /* Elegant Language Toggle */
     .lang-toggle-wrapper {
       display: flex;
       justify-content: center;
@@ -141,7 +132,6 @@
       display: none !important;
     }
 
-    /* Beautiful Headers */
     .header {
       text-align: center;
       margin-bottom: 40px;
@@ -165,7 +155,6 @@
       line-height: 1.5;
     }
 
-    /* Form Layout & Spacing */
     .info-alert {
       background: #fffbeb;
       border: 1px solid #fef08a;
@@ -220,26 +209,20 @@
       border-radius: 50%;
       box-shadow: 0 0 0 4px var(--dot-ring);
       animation: pulse 2s infinite;
+      transition: all 0.4s ease;
     }
 
-    .status-dot.closed {
-      --dot-color: #ef4444;
-      --dot-ring: rgba(239, 68, 68, 0.2);
-      --dot-pulse: rgba(239, 68, 68, 0.4);
-    }
+    /* Pulse Color Variants */
+    .status-dot.red { --dot-color: var(--error-color); --dot-ring: rgba(239, 68, 68, 0.2); --dot-pulse: rgba(239, 68, 68, 0.4); }
+    .status-dot.yellow { --dot-color: var(--warning-color); --dot-ring: rgba(245, 158, 11, 0.2); --dot-pulse: rgba(245, 158, 11, 0.4); }
+    .status-dot.blue { --dot-color: var(--info-color); --dot-ring: rgba(59, 130, 246, 0.2); --dot-pulse: rgba(59, 130, 246, 0.4); }
+    .status-dot.purple { --dot-color: var(--special-color); --dot-ring: rgba(168, 85, 247, 0.2); --dot-pulse: rgba(168, 85, 247, 0.4); }
+    .status-dot.green { --dot-color: var(--success-color); --dot-ring: rgba(34, 197, 94, 0.2); --dot-pulse: rgba(34, 197, 94, 0.4); }
 
     @keyframes pulse {
-      0% {
-        box-shadow: 0 0 0 0 var(--dot-pulse);
-      }
-
-      70% {
-        box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
-      }
-
-      100% {
-        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-      }
+      0% { box-shadow: 0 0 0 0 var(--dot-pulse); }
+      70% { box-shadow: 0 0 0 10px rgba(0, 0, 0, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); }
     }
 
     .hours-card h3 {
@@ -247,6 +230,7 @@
       font-weight: 700;
       color: var(--primary-color);
       font-size: 18px;
+      transition: color 0.4s ease;
     }
 
     .hours-card p {
@@ -281,7 +265,6 @@
       gap: 20px;
     }
 
-    /* High-End Inputs */
     input[type="text"],
     textarea {
       width: 100%;
@@ -303,12 +286,6 @@
       line-height: 1.5;
     }
 
-    input[type="text"]::placeholder,
-    textarea::placeholder {
-      color: #94a3b8;
-      font-weight: 400;
-    }
-
     input[type="text"]:focus,
     textarea:focus {
       outline: none;
@@ -317,12 +294,6 @@
       box-shadow: 0 0 0 4px var(--ring-color);
     }
 
-    input[type="text"]:hover:not(:focus),
-    textarea:hover:not(:focus) {
-      border-color: #cbd5e1;
-    }
-
-    /* Premium Radio Cards (The "Stripe" look) */
     .radio-group {
       display: flex;
       flex-direction: column;
@@ -364,7 +335,6 @@
       transform: translateY(-2px);
     }
 
-    /* Emojis in a premium circular badge container */
     .radio-emoji {
       font-size: 22px;
       margin-right: 16px;
@@ -381,12 +351,6 @@
       transition: all 0.2s ease;
     }
 
-    .radio-label input[type="radio"]:checked+.radio-card .radio-emoji {
-      border-color: rgba(27, 94, 32, 0.3);
-      background: #e8f5e9;
-      transform: scale(1.05);
-    }
-
     .radio-content {
       flex: 1;
       padding-top: 2px;
@@ -397,15 +361,8 @@
       font-size: 16px;
       line-height: 1.5;
       color: var(--text-main);
-      transition: color 0.2s ease;
     }
 
-    .radio-label input[type="radio"]:checked+.radio-card .radio-text {
-      color: var(--primary-color);
-      font-weight: 600;
-    }
-
-    /* "App-like" Submit Button */
     .submit-btn {
       width: 100%;
       padding: 18px;
@@ -428,33 +385,11 @@
       overflow: hidden;
     }
 
-    .submit-btn::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
-      transform: skewX(-20deg);
-      transition: 0.5s;
-    }
-
-    .submit-btn:hover::after {
-      left: 150%;
-    }
-
     .submit-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 32px -4px rgba(20, 83, 45, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+      box-shadow: 0 12px 32px -4px rgba(20, 83, 45, 0.6);
     }
 
-    .submit-btn:active {
-      transform: translateY(1px);
-      box-shadow: 0 4px 12px rgba(20, 83, 45, 0.4);
-    }
-
-    /* Spinner */
     .spinner {
       display: none;
       width: 22px;
@@ -465,19 +400,11 @@
       animation: spin 0.8s infinite linear;
     }
 
-    @keyframes spin {
-      100% {
-        transform: rotate(360deg);
-      }
-    }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
 
-    /* Success Screen */
     .success-screen {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
       border-radius: 24px;
@@ -493,105 +420,23 @@
       transition: opacity 0.4s ease;
     }
 
-    .success-screen.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
+    .success-screen.active { opacity: 1; pointer-events: auto; }
 
-    .success-icon {
-      font-size: 72px;
-      margin-bottom: 24px;
-      animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-      transform: scale(0);
-      filter: drop-shadow(0 10px 15px rgba(34, 197, 94, 0.2));
-    }
+    .success-icon { font-size: 72px; margin-bottom: 24px; animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; transform: scale(0); }
+    @keyframes popIn { 100% { transform: scale(1); } }
 
-    @keyframes popIn {
-      100% {
-        transform: scale(1);
-      }
-    }
+    .success-title { font-family: 'Outfit', sans-serif; font-size: 32px; color: var(--primary-color); font-weight: 800; margin-bottom: 12px; }
+    
+    .error-shake { animation: shake 0.5s cubic-bezier(.36, .07, .19, .97) both; border-color: var(--error-color) !important; background: #fef2f2 !important; }
+    @keyframes shake { 10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-4px, 0, 0); } 40%, 60% { transform: translate3d(4px, 0, 0); } }
 
-    .success-title {
-      font-family: 'Outfit', sans-serif;
-      font-size: 32px;
-      color: var(--primary-color);
-      font-weight: 800;
-      margin-bottom: 12px;
-      letter-spacing: -0.02em;
-    }
-
-    .success-desc {
-      font-size: 16px;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    /* Error UI */
-    .error-shake {
-      animation: shake 0.5s cubic-bezier(.36, .07, .19, .97) both;
-      border-color: var(--error-color) !important;
-      background: #fef2f2 !important;
-    }
-
-    @keyframes shake {
-
-      10%,
-      90% {
-        transform: translate3d(-1px, 0, 0);
-      }
-
-      20%,
-      80% {
-        transform: translate3d(2px, 0, 0);
-      }
-
-      30%,
-      50%,
-      70% {
-        transform: translate3d(-4px, 0, 0);
-      }
-
-      40%,
-      60% {
-        transform: translate3d(4px, 0, 0);
-      }
-    }
-
-    /* Mobile */
-    @media (max-width: 500px) {
-      body {
-        padding: 16px;
-      }
-
-      .container {
-        padding: 32px 24px;
-        border-radius: 20px;
-      }
-
-      .input-row {
-        grid-template-columns: 1fr;
-        gap: 0;
-      }
-
-      .input-row .form-group {
-        margin-bottom: 20px;
-      }
-
-      .radio-card {
-        padding: 16px;
-      }
-    }
+    @media (max-width: 500px) { body { padding: 16px; } .container { padding: 32px 24px; border-radius: 20px; } .input-row { grid-template-columns: 1fr; gap: 0; } .input-row .form-group { margin-bottom: 20px; } }
   </style>
 </head>
 
 <body class="lang-en">
 
-  <div class="orb-1"></div>
-  <div class="orb-2"></div>
-  <div class="orb-3"></div>
-
-  <div class="container">
+  <div class="container" id="mainContainer">
     <div class="lang-toggle-wrapper">
       <div class="lang-toggle">
         <button class="lang-btn active" id="btn-en" onclick="setLang('en')">English</button>
@@ -601,8 +446,8 @@
 
     <div class="header">
       <h1>
-        <span class="lang-en">Wellness Center Visit Request</span>
-        <span class="lang-es">Solicitud de Visita al Centro de Bienestar</span>
+        <span class="lang-en">Wellness Center Request</span>
+        <span class="lang-es">Solicitud al Centro de Bienestar</span>
       </h1>
       <p>
         <span class="lang-en">We're here for you. Tell us what you need.</span>
@@ -612,20 +457,16 @@
 
     <div class="info-alert">
       <div class="info-alert-text lang-en">
-        <strong>Important:</strong> Please fill out this form if you would like to have someone from the Wellness Center
-        check in with you or to schedule a break. <br><br>
-        If you feel this is an emergency, please do not fill out this form. Instead, reach out to a trusted adult
-        immediately. We will try our best to call you out within 24 hours.
+        <strong>Important:</strong> Please fill out this form to check in or to schedule a break. <br>
+        If this is an emergency, do not fill out this form. Reach out to an adult immediately.
       </div>
       <div class="info-alert-text lang-es">
-        <strong>Importante:</strong> Por favor complete este formulario si desea hablar con alguien del Centro de
-        Bienestar o para programar un receso. <br><br>
-        Si considera que se trata de una emergencia, no completes este formulario. En cambio, comuníquese de inmediato
-        con un adulto de confianza. Haremos todo lo posible por llamarlo dentro de las 24 horas.
+        <strong>Importante:</strong> Complete este formulario para hablar con alguien o programar un receso. <br>
+        Si es una emergencia, no completes este formulario. Contacte a un adulto de inmediato.
       </div>
     </div>
 
-    <!-- Editable Weekly Hours -->
+    <!-- Dynamic Status Card -->
     <div class="hours-card">
       <div class="hours-header">
         <div class="status-dot" id="statusDot"></div>
@@ -637,7 +478,6 @@
     </div>
 
     <form id="wellness-form" autocomplete="off">
-
       <div class="input-row">
         <div class="form-group">
           <label for="firstName">
@@ -663,54 +503,40 @@
         </label>
 
         <div class="radio-group" id="urgency-group">
-
-          <!-- Option 1: Urgent -->
           <label class="radio-label">
-            <input type="radio" name="entry.1925342282"
-              value="🔴I need to see someone today. I am having a very hard time and cannot focus. Necesito ver a alguien hoy. Estoy pasando por un momento muy difícil y no puedo concentrarme."
-              required>
+            <input type="radio" name="entry.1925342282" value="🔴 Urgent" required>
             <div class="radio-card">
               <div class="radio-emoji">🔴</div>
               <div class="radio-content">
                 <div class="radio-text">
-                  <span class="lang-en">I need to see someone today. I am having a very hard time and cannot
-                    focus.</span>
-                  <span class="lang-es">Necesito ver a alguien hoy. Estoy pasando por un momento muy difícil y no puedo
-                    concentrarme.</span>
+                  <span class="lang-en">I need to see someone today.</span>
+                  <span class="lang-es">Necesito ver a alguien hoy.</span>
                 </div>
               </div>
             </div>
           </label>
 
-          <!-- Option 2: Next Day -->
           <label class="radio-label">
-            <input type="radio" name="entry.1925342282"
-              value="🟡I would like to check in sometime in the next day or two. It's important, but I am okay for right now. Me gustaría comunicarme en los próximos días. Es importante, pero por mientras estoy bien.">
+            <input type="radio" name="entry.1925342282" value="🟡 Important">
             <div class="radio-card">
               <div class="radio-emoji">🟡</div>
               <div class="radio-content">
                 <div class="radio-text">
-                  <span class="lang-en">I would like to check in sometime in the next day or two. It's important, but I
-                    am okay for right now.</span>
-                  <span class="lang-es">Me gustaría comunicarme en los próximos días. Es importante, pero por mientras
-                    estoy bien.</span>
+                  <span class="lang-en">In the next day or two. It's important.</span>
+                  <span class="lang-es">En los próximos días. Es importante.</span>
                 </div>
               </div>
             </div>
           </label>
 
-          <!-- Option 3: No Rush -->
           <label class="radio-label">
-            <input type="radio" name="entry.1925342282"
-              value="🟢No rush. I just want to schedule a general check-in when you have free time or schedule a break. Sin prisa. Solo quiero programar una reunión general cuando tengas tiempo libre o simplemente programar un descanso.">
+            <input type="radio" name="entry.1925342282" value="🟢 No rush">
             <div class="radio-card">
               <div class="radio-emoji">🟢</div>
               <div class="radio-content">
                 <div class="radio-text">
-                  <span class="lang-en">No rush. I just want to schedule a general check-in when you have free time or
-                    schedule a break.</span>
-                  <span class="lang-es">Sin prisa. Solo quiero programar una reunión general cuando tengas tiempo libre
-                    o simplemente programar un descanso.</span>
+                  <span class="lang-en">No rush. Just a general check-in.</span>
+                  <span class="lang-es">Sin prisa. Solo una reunión general.</span>
                 </div>
               </div>
             </div>
@@ -720,8 +546,8 @@
 
       <div class="form-group">
         <label for="optionalText">
-          <span class="lang-en">Anything else you would like to tell us? (Optional)</span>
-          <span class="lang-es">¿Alguna otra cosa que desees decirnos? (Opcional)</span>
+          <span class="lang-en">Anything else? (Optional)</span>
+          <span class="lang-es">¿Algo más? (Opcional)</span>
         </label>
         <textarea id="optionalText" name="entry.417097114" placeholder="..."></textarea>
       </div>
@@ -731,10 +557,8 @@
         <span class="btn-text lang-es">Enviar Solicitud</span>
         <div class="spinner" id="btnSpinner"></div>
       </button>
-
     </form>
 
-    <!-- Success Screen -->
     <div class="success-screen" id="successScreen">
       <div class="success-icon">✨</div>
       <h2 class="success-title">
@@ -742,200 +566,103 @@
         <span class="lang-es">¡Entendido!</span>
       </h2>
       <p class="success-desc">
-        <span class="lang-en">Your request has been received safely.<br>We will reach out to you soon.</span>
-        <span class="lang-es">Tu solicitud ha sido recibida.<br>Nos comunicaremos contigo pronto.</span>
+        <span class="lang-en">Your request has been received safely.</span>
+        <span class="lang-es">Tu solicitud ha sido recibida.</span>
       </p>
     </div>
-
   </div>
 
   <script>
-    // --- Hours Status ---
+    // --- STATUS LOGIC ---
     async function updateStatus() {
       const now = new Date();
-      const day = now.getDay(); // 0 is Sunday, 1 is Monday... 6 is Saturday
+      const day = now.getDay();
       const hour = now.getHours();
       const minutes = now.getMinutes();
 
-      // Open Mon-Fri 8:00 AM to 4:30 PM
       const isWeekday = day >= 1 && day <= 5;
       const pastOpenTime = hour > 8 || (hour === 8 && minutes >= 0);
       const beforeCloseTime = hour < 16 || (hour === 16 && minutes < 30);
-
+      
       let isOpen = isWeekday && pastOpenTime && beforeCloseTime;
-      let customMessage = null;
+      let displayMessage = null;
+      let customColor = null;
 
-      // --- Central Master Switch Check ---
       try {
         const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQadc55Jy_BcBeMW7Y35vjqQoW0WWxULCjEZXrrzbAnkjC1VDdXiskQyOxmh6HO6HiqMLOMNb53Wj6C/pub?gid=526632501&single=true&output=csv';
-        
-        // Use 'no-store' cache string and dynamic timestamp to force local update, but NO custom headers to avoid CORS blocks
-        const response = await fetch(sheetUrl + '&t=' + new Date().getTime(), {
-          cache: "no-store"
-        });
+        const response = await fetch(sheetUrl + '&t=' + new Date().getTime(), { cache: "no-store" });
         const data = await response.text();
-        
-        // Clean up the data (remove quotes, extra spaces, line breaks)
-        const sheetText = data ? data.replace(/["\r\n]/g, '').trim() : '';
+        const sheetText = data ? data.split(',')[0].replace(/["\r\n]/g, '').trim() : '';
 
-        // If the cell contains anything other than 'AUTO' or empty, use it as a custom closed message
         if (sheetText !== '' && sheetText.toUpperCase() !== 'AUTO') {
           isOpen = false;
-          customMessage = sheetText;
+          displayMessage = sheetText;
+          
+          // Detect Emoji Color Command
+          if (sheetText.startsWith('🔴')) customColor = 'red';
+          else if (sheetText.startsWith('🟡')) customColor = 'yellow';
+          else if (sheetText.startsWith('🔵')) customColor = 'blue';
+          else if (sheetText.startsWith('🟣')) customColor = 'purple';
+          else if (sheetText.startsWith('🟢')) { customColor = 'green'; isOpen = true; }
         }
-      } catch (err) {
-        console.error('Could not fetch central status:', err);
-        // Silently fall back to normal automated hours if offline
-      }
+      } catch (err) { console.error('Fetch error:', err); }
 
-      const statusDot = document.getElementById('statusDot');
-      const statusTextEn = document.getElementById('statusTextEn');
-      const statusTextEs = document.getElementById('statusTextEs');
+      const dot = document.getElementById('statusDot');
+      const textEn = document.getElementById('statusTextEn');
+      const textEs = document.getElementById('statusTextEs');
 
-      if (!statusDot || !statusTextEn || !statusTextEs) return;
+      // Reset colors first
+      dot.className = 'status-dot';
+      textEn.style.color = '';
+      textEs.style.color = '';
 
       if (isOpen) {
-        statusDot.classList.remove('closed');
-        statusTextEn.textContent = 'Currently Open';
-        statusTextEn.style.color = 'var(--primary-color)';
-        statusTextEs.textContent = 'Actualmente Abierto';
-        statusTextEs.style.color = 'var(--primary-color)';
+        dot.classList.add(customColor || 'green');
+        textEn.textContent = displayMessage || 'Currently Open';
+        textEs.textContent = displayMessage || 'Actualmente Abierto';
+        textEn.style.color = customColor ? `var(--${customColor}-color)` : 'var(--primary-color)';
+        textEs.style.color = customColor ? `var(--${customColor}-color)` : 'var(--primary-color)';
       } else {
-        statusDot.classList.add('closed');
-        // Display the custom message if you typed one, otherwise default to "Currently Closed"
-        statusTextEn.textContent = customMessage ? customMessage : 'Currently Closed';
-        statusTextEn.style.color = 'var(--error-color)';
-        statusTextEs.textContent = customMessage ? customMessage : 'Actualmente Cerrado';
-        statusTextEs.style.color = 'var(--error-color)';
+        dot.classList.add(customColor || 'red');
+        textEn.textContent = displayMessage || 'Currently Closed';
+        textEs.textContent = displayMessage || 'Actualmente Cerrado';
+        textEn.style.color = `var(--${customColor || 'error'}-color)`;
+        textEs.style.color = `var(--${customColor || 'error'}-color)`;
       }
     }
 
     updateStatus();
     setInterval(updateStatus, 60000);
 
-    // --- UI Controls ---
+    // --- UI LOGIC ---
     function setLang(lang) {
-      document.body.classList.remove('lang-en', 'lang-es');
-      document.body.classList.add('lang-' + lang);
-      document.getElementById('btn-en').classList.remove('active');
-      document.getElementById('btn-es').classList.remove('active');
+      document.body.className = 'lang-' + lang;
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
       document.getElementById('btn-' + lang).classList.add('active');
     }
 
-    // --- Format Input ---
-    const firstName = document.getElementById('firstName');
-    const lastName = document.getElementById('lastName');
-
-    function capitalize(e) {
-      if (e.target.value) {
-        e.target.value = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
-      }
-    }
-
-    // Jump between inputs quickly
-    firstName.addEventListener('blur', capitalize);
-    firstName.addEventListener('keydown', e => {
-      if (e.key === 'Enter') { e.preventDefault(); lastName.focus(); }
-    });
-
-    lastName.addEventListener('blur', capitalize);
-    lastName.addEventListener('keydown', e => {
-      if (e.key === 'Enter') { e.preventDefault(); lastName.blur(); }
-    });
-
-    // --- Form Submission logic ---
     const form = document.getElementById('wellness-form');
-    const submitBtn = document.getElementById('submitBtn');
-    const btnTextEn = submitBtn.querySelector('.lang-en');
-    const btnTextEs = submitBtn.querySelector('.lang-es');
-    const btnSpinner = document.getElementById('btnSpinner');
-    const successScreen = document.getElementById('successScreen');
-    const urgencyGroup = document.getElementById('urgency-group');
-
-    // Auto submission capability (optional, but requested on standard forms)
-    // Here we'll rely on the standard submit button, but let's shake empty required fields
-
-    form.addEventListener('submit', function (e) {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-
-      let isValid = true;
-      if (!firstName.value.trim()) { firstName.classList.add('error-shake'); isValid = false; }
-      if (!lastName.value.trim()) { lastName.classList.add('error-shake'); isValid = false; }
-
-      const radioChecked = document.querySelector('input[name="entry.1925342282"]:checked');
-      if (!radioChecked) {
-        urgencyGroup.classList.add('error-shake');
-        isValid = false;
-      }
-
-      setTimeout(() => {
-        firstName.classList.remove('error-shake');
-        lastName.classList.remove('error-shake');
-        urgencyGroup.classList.remove('error-shake');
-      }, 500);
-
-      if (!isValid) return;
-
-      // Loading state
-      btnTextEn.style.display = 'none';
-      btnTextEs.style.display = 'none';
-      btnSpinner.style.display = 'block';
-      submitBtn.style.pointerEvents = 'none';
-      submitBtn.style.opacity = '0.8';
-
-      // Send Request
+      document.getElementById('btnSpinner').style.display = 'block';
+      
       const formData = new FormData(form);
       const encodedData = new URLSearchParams(formData).toString();
-
-      // Target Form Action URL (verified exact path)
       const actionUrl = 'https://docs.google.com/forms/d/e/1FAIpQLScMRPe4mLOhPaQNVtiJLQJAQlJMrjXExxro9tdYJwcvGpUAuA/formResponse';
 
-      fetch(actionUrl, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: encodedData
-      })
-        .then(() => {
-          // Show Success
-          successScreen.classList.add('active');
-
-          // Reset app after 3.5 seconds
-          setTimeout(() => {
-            form.reset();
-            successScreen.classList.remove('active');
-            btnSpinner.style.display = 'none';
-
-            if (document.body.classList.contains('lang-en')) {
-              btnTextEn.style.display = 'block';
-            } else {
-              btnTextEs.style.display = 'block';
-            }
-
-            submitBtn.style.pointerEvents = 'auto';
-            submitBtn.style.opacity = '1';
-            window.scrollTo(0, 0);
-          }, 3500);
-        })
-        .catch(err => {
-          console.error('Submission failed', err);
-          alert('Something went wrong. Please alert the staff.');
-
-          btnSpinner.style.display = 'none';
-
-          if (document.body.classList.contains('lang-en')) {
-            btnTextEn.style.display = 'block';
-          } else {
-            btnTextEs.style.display = 'block';
-          }
-
-          submitBtn.style.pointerEvents = 'auto';
-          submitBtn.style.opacity = '1';
-        });
+      try {
+        await fetch(actionUrl, { method: 'POST', mode: 'no-cors', body: encodedData });
+        document.getElementById('successScreen').classList.add('active');
+        setTimeout(() => { location.reload(); }, 3500);
+      } catch (err) {
+        alert('Submission failed. Please tell staff.');
+        document.getElementById('btnSpinner').style.display = 'none';
+      }
     });
+
+    const capitalize = (e) => { if (e.target.value) e.target.value = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1); };
+    document.getElementById('firstName').addEventListener('blur', capitalize);
+    document.getElementById('lastName').addEventListener('blur', capitalize);
   </script>
 </body>
-
 </html>
