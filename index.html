@@ -769,6 +769,46 @@
       let customMessage = null;
       let colorMode = null;
 
+      const statusDot = document.getElementById('statusDot');
+      const statusTextEn = document.getElementById('statusTextEn');
+      const statusTextEs = document.getElementById('statusTextEs');
+
+      if (!statusDot || !statusTextEn || !statusTextEs) return;
+
+      const applyDOM = () => {
+        statusDot.className = 'status-dot';
+        statusTextEn.style.color = '';
+        statusTextEs.style.color = '';
+
+        if (isOpen) {
+          statusDot.classList.add(colorMode || 'green');
+          statusTextEn.textContent = customMessage || 'Currently Open';
+          statusTextEs.textContent = customMessage || 'Actualmente Abierto';
+          // If green mode or standard open, use primary color
+          const themeColor = colorMode ? `var(--${colorMode}-color)` : 'var(--primary-color)';
+          statusTextEn.style.color = themeColor;
+          statusTextEs.style.color = themeColor;
+          
+        } else {
+          statusDot.classList.add(colorMode || 'red');
+          statusTextEn.textContent = customMessage || 'Currently Closed';
+          statusTextEs.textContent = customMessage || 'Actualmente Cerrado';
+          
+          // Set fallback custom colors for warnings
+          const fallbackColor = colorMode ? `var(--${colorMode}-color)` : 'var(--error-color)';
+          let finalColor = fallbackColor;
+          if(colorMode === 'yellow') finalColor = '#d97706'; 
+          if(colorMode === 'blue') finalColor = '#2563eb';
+          if(colorMode === 'purple') finalColor = '#9333ea';
+          
+          statusTextEn.style.color = finalColor;
+          statusTextEs.style.color = finalColor;
+        }
+      };
+
+      // 1. Initial fast local render to prevent micro-lag
+      applyDOM();
+
       // --- Central Master Switch Check ---
       try {
         // Enforce range=A1 so it only ever reads cell A1, ignoring data typed elsewhere in the sheet
@@ -800,46 +840,13 @@
           
           isOpen = colorMode === 'green' ? true : false;
           customMessage = sheetText;
+          
+          // 2. Refresh the DOM if we got a remote override
+          applyDOM();
         }
       } catch (err) {
         console.error('Could not fetch central status:', err);
         // Silently fall back to normal automated hours if offline
-      }
-      
-      const statusDot = document.getElementById('statusDot');
-      const statusTextEn = document.getElementById('statusTextEn');
-      const statusTextEs = document.getElementById('statusTextEs');
-      
-      if (!statusDot || !statusTextEn || !statusTextEs) return;
-
-      // Reset colors first
-      statusDot.className = 'status-dot';
-      statusTextEn.style.color = '';
-      statusTextEs.style.color = '';
-
-      if (isOpen) {
-        statusDot.classList.add(colorMode || 'green');
-        statusTextEn.textContent = customMessage || 'Currently Open';
-        statusTextEs.textContent = customMessage || 'Actualmente Abierto';
-        // If green mode or standard open, use primary color
-        const themeColor = colorMode ? `var(--${colorMode}-color)` : 'var(--primary-color)';
-        statusTextEn.style.color = themeColor;
-        statusTextEs.style.color = themeColor;
-        
-      } else {
-        statusDot.classList.add(colorMode || 'red');
-        statusTextEn.textContent = customMessage || 'Currently Closed';
-        statusTextEs.textContent = customMessage || 'Actualmente Cerrado';
-        
-        // Set fallback custom colors for warnings
-        const fallbackColor = colorMode ? `var(--${colorMode}-color)` : 'var(--error-color)';
-        let finalColor = fallbackColor;
-        if(colorMode === 'yellow') finalColor = '#d97706'; 
-        if(colorMode === 'blue') finalColor = '#2563eb';
-        if(colorMode === 'purple') finalColor = '#9333ea';
-        
-        statusTextEn.style.color = finalColor;
-        statusTextEs.style.color = finalColor;
       }
     }
 
