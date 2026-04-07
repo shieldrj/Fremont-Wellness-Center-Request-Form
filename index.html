@@ -223,11 +223,35 @@
     }
 
     /* Pulse Color Variants */
-    .status-dot.red { --dot-color: var(--error-color); --dot-ring: rgba(239, 68, 68, 0.2); --dot-pulse: rgba(239, 68, 68, 0.4); }
-    .status-dot.yellow { --dot-color: #f59e0b; --dot-ring: rgba(245, 158, 11, 0.2); --dot-pulse: rgba(245, 158, 11, 0.4); }
-    .status-dot.blue { --dot-color: #3b82f6; --dot-ring: rgba(59, 130, 246, 0.2); --dot-pulse: rgba(59, 130, 246, 0.4); }
-    .status-dot.purple { --dot-color: #a855f7; --dot-ring: rgba(168, 85, 247, 0.2); --dot-pulse: rgba(168, 85, 247, 0.4); }
-    .status-dot.green { --dot-color: var(--success-color); --dot-ring: rgba(34, 197, 94, 0.2); --dot-pulse: rgba(34, 197, 94, 0.4); }
+    .status-dot.red {
+      --dot-color: var(--error-color);
+      --dot-ring: rgba(239, 68, 68, 0.2);
+      --dot-pulse: rgba(239, 68, 68, 0.4);
+    }
+
+    .status-dot.yellow {
+      --dot-color: #f59e0b;
+      --dot-ring: rgba(245, 158, 11, 0.2);
+      --dot-pulse: rgba(245, 158, 11, 0.4);
+    }
+
+    .status-dot.blue {
+      --dot-color: #3b82f6;
+      --dot-ring: rgba(59, 130, 246, 0.2);
+      --dot-pulse: rgba(59, 130, 246, 0.4);
+    }
+
+    .status-dot.purple {
+      --dot-color: #a855f7;
+      --dot-ring: rgba(168, 85, 247, 0.2);
+      --dot-pulse: rgba(168, 85, 247, 0.4);
+    }
+
+    .status-dot.green {
+      --dot-color: var(--success-color);
+      --dot-ring: rgba(34, 197, 94, 0.2);
+      --dot-pulse: rgba(34, 197, 94, 0.4);
+    }
 
     @keyframes pulse {
       0% {
@@ -635,8 +659,10 @@
       </div>
       <p class="lang-en"><strong>Normal Hours:</strong> Monday - Friday, 8:00 AM - 4:30 PM</p>
       <p class="lang-es"><strong>Horario Normal:</strong> Lunes - Viernes, 8:00 AM - 4:30 PM</p>
-      <p class="hours-note lang-en" style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">*(Unless noted above)*</p>
-      <p class="hours-note lang-es" style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">*(A menos que se indique arriba)*</p>
+      <p class="hours-note lang-en" style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">*(Unless noted
+        above)*</p>
+      <p class="hours-note lang-es" style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">*(A menos que se
+        indique arriba)*</p>
     </div>
 
     <form id="wellness-form" autocomplete="off">
@@ -737,6 +763,17 @@
 
     </form>
 
+    <!-- Team Footer (Subtle & Centered) -->
+    <div class="team-footer" style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border-subtle); text-align: center;">
+      <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6; font-weight: 500;">
+        <span class="lang-en"><strong>Mental Health Clinician:</strong> Mr. Robert Shields</span>
+        <span class="lang-es"><strong>Especialista de Salud Mental:</strong> Sr. Robert Shields</span>
+        <br>
+        <span class="lang-en"><strong>Wellness Interns:</strong> Ms. Hajara Fofana, Ms. Nicole Perez, Ms. Rylie Rader, Ms. Ashley</span>
+        <span class="lang-es"><strong>Pasantes de Bienestar:</strong> Srta. Hajara Fofana, Srta. Nicole Perez, Srta. Rylie Rader, Srta. Ashley</span>
+      </p>
+    </div>
+
     <!-- Success Screen -->
     <div class="success-screen" id="successScreen">
       <div class="success-icon">✨</div>
@@ -788,19 +825,19 @@
           const themeColor = colorMode ? `var(--${colorMode}-color)` : 'var(--primary-color)';
           statusTextEn.style.color = themeColor;
           statusTextEs.style.color = themeColor;
-          
+
         } else {
           statusDot.classList.add(colorMode || 'red');
           statusTextEn.textContent = customMessage || 'Currently Closed';
           statusTextEs.textContent = customMessage || 'Actualmente Cerrado';
-          
+
           // Set fallback custom colors for warnings
           const fallbackColor = colorMode ? `var(--${colorMode}-color)` : 'var(--error-color)';
           let finalColor = fallbackColor;
-          if(colorMode === 'yellow') finalColor = '#d97706'; 
-          if(colorMode === 'blue') finalColor = '#2563eb';
-          if(colorMode === 'purple') finalColor = '#9333ea';
-          
+          if (colorMode === 'yellow') finalColor = '#d97706';
+          if (colorMode === 'blue') finalColor = '#2563eb';
+          if (colorMode === 'purple') finalColor = '#9333ea';
+
           statusTextEn.style.color = finalColor;
           statusTextEs.style.color = finalColor;
         }
@@ -818,7 +855,7 @@
           headers: { 'Cache-control': 'no-cache', 'Pragma': 'no-cache' }
         });
         const data = await response.text();
-        
+
         // Clean up the data (remove quotes, extra spaces, line breaks)
         let sheetText = data ? data.replace(/["\r\n]/g, '').trim() : '';
 
@@ -837,10 +874,10 @@
               sheetText = sheetText.replace(e, '').trim();
             }
           });
-          
+
           isOpen = colorMode === 'green' ? true : false;
           customMessage = sheetText;
-          
+
           // 2. Refresh the DOM if we got a remote override
           applyDOM();
         }
