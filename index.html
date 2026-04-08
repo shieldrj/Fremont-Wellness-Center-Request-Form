@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wellness Center Request</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -58,7 +58,7 @@
       min-height: 100vh;
       padding: 24px;
       -webkit-font-smoothing: antialiased;
-      user-select: none;
+
     }
 
     /* Subtle Animated Glow behind container */
@@ -550,6 +550,31 @@
       font-size: 16px;
       color: var(--text-muted);
       line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .submit-another-btn {
+      padding: 14px 36px;
+      background: linear-gradient(135deg, #166534, #14532d);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 6px 20px -4px rgba(20, 83, 45, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    }
+
+    .submit-another-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px -4px rgba(20, 83, 45, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    }
+
+    .submit-another-btn:active {
+      transform: translateY(1px);
+      box-shadow: 0 4px 12px rgba(20, 83, 45, 0.3);
     }
 
     /* Error UI */
@@ -673,7 +698,7 @@
             <span class="lang-en">First Name *</span>
             <span class="lang-es">Nombre *</span>
           </label>
-          <input type="text" id="firstName" name="entry.1232825348" required autofocus placeholder="...">
+          <input type="text" id="firstName" name="entry.1232825348" required placeholder="...">
         </div>
 
         <div class="form-group">
@@ -785,6 +810,10 @@
         <span class="lang-en">Your request has been received safely.<br>We will reach out to you soon.</span>
         <span class="lang-es">Tu solicitud ha sido recibida.<br>Nos comunicaremos contigo pronto.</span>
       </p>
+      <button type="button" class="submit-another-btn" id="submitAnotherBtn">
+        <span class="lang-en">Submit Another Request</span>
+        <span class="lang-es">Enviar Otra Solicitud</span>
+      </button>
     </div>
 
   </div>
@@ -929,8 +958,26 @@
     const successScreen = document.getElementById('successScreen');
     const urgencyGroup = document.getElementById('urgency-group');
 
-    // Auto submission capability (optional, but requested on standard forms)
-    // Here we'll rely on the standard submit button, but let's shake empty required fields
+    let autoResetTimer = null;
+
+    // Shared reset function for both auto-timer and manual button
+    function resetForm() {
+      clearTimeout(autoResetTimer);
+      form.reset();
+      successScreen.classList.remove('active');
+      btnSpinner.style.display = 'none';
+
+      // Restore the correct language button text
+      btnTextEn.style.display = '';
+      btnTextEs.style.display = '';
+
+      submitBtn.style.pointerEvents = 'auto';
+      submitBtn.style.opacity = '1';
+      window.scrollTo(0, 0);
+    }
+
+    // "Submit Another Request" button
+    document.getElementById('submitAnotherBtn').addEventListener('click', resetForm);
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -979,22 +1026,8 @@
           // Show Success
           successScreen.classList.add('active');
 
-          // Reset app after 3.5 seconds
-          setTimeout(() => {
-            form.reset();
-            successScreen.classList.remove('active');
-            btnSpinner.style.display = 'none';
-
-            if (document.body.classList.contains('lang-en')) {
-              btnTextEn.style.display = 'block';
-            } else {
-              btnTextEs.style.display = 'block';
-            }
-
-            submitBtn.style.pointerEvents = 'auto';
-            submitBtn.style.opacity = '1';
-            window.scrollTo(0, 0);
-          }, 3500);
+          // Auto-reset after 8 seconds (gives time to read)
+          autoResetTimer = setTimeout(resetForm, 8000);
         })
         .catch(err => {
           console.error('Submission failed', err);
