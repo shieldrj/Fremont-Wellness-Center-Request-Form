@@ -63,7 +63,9 @@
     }
 
     /* Ambient Floating Orbs */
-    .orb-1, .orb-2, .orb-3 {
+    .orb-1,
+    .orb-2,
+    .orb-3 {
       position: fixed;
       border-radius: 50%;
       pointer-events: none;
@@ -100,21 +102,51 @@
     }
 
     @keyframes orbFloat1 {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      33% { transform: translate(40px, 30px) scale(1.05); }
-      66% { transform: translate(-20px, 50px) scale(0.95); }
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      33% {
+        transform: translate(40px, 30px) scale(1.05);
+      }
+
+      66% {
+        transform: translate(-20px, 50px) scale(0.95);
+      }
     }
 
     @keyframes orbFloat2 {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      33% { transform: translate(-30px, -40px) scale(1.08); }
-      66% { transform: translate(20px, -20px) scale(0.92); }
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      33% {
+        transform: translate(-30px, -40px) scale(1.08);
+      }
+
+      66% {
+        transform: translate(20px, -20px) scale(0.92);
+      }
     }
 
     @keyframes orbFloat3 {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      33% { transform: translate(-50px, 20px) scale(1.1); }
-      66% { transform: translate(30px, -30px) scale(0.9); }
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      33% {
+        transform: translate(-50px, 20px) scale(1.1);
+      }
+
+      66% {
+        transform: translate(30px, -30px) scale(0.9);
+      }
     }
 
     .container {
@@ -758,9 +790,20 @@
         height: 56px;
       }
 
-      .orb-1 { width: 200px; height: 200px; }
-      .orb-2 { width: 160px; height: 160px; }
-      .orb-3 { width: 120px; height: 120px; }
+      .orb-1 {
+        width: 200px;
+        height: 200px;
+      }
+
+      .orb-2 {
+        width: 160px;
+        height: 160px;
+      }
+
+      .orb-3 {
+        width: 120px;
+        height: 120px;
+      }
     }
   </style>
 </head>
@@ -919,7 +962,8 @@
 
       <div class="privacy-note">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 1C8.676 1 6 3.676 6 7v2H4v14h16V9h-2V7c0-3.324-2.676-6-6-6zm0 2c2.276 0 4 1.724 4 4v2H8V7c0-2.276 1.724-4 4-4zm-1 12.268V18h2v-2.732A2 2 0 0012 11a2 2 0 00-1 3.268z"/>
+          <path
+            d="M12 1C8.676 1 6 3.676 6 7v2H4v14h16V9h-2V7c0-3.324-2.676-6-6-6zm0 2c2.276 0 4 1.724 4 4v2H8V7c0-2.276 1.724-4 4-4zm-1 12.268V18h2v-2.732A2 2 0 0012 11a2 2 0 00-1 3.268z" />
         </svg>
         <span class="lang-en">Your request is private and only seen by the Wellness Team.</span>
         <span class="lang-es">Tu solicitud es privada y solo la ve el equipo de Bienestar.</span>
@@ -928,13 +972,11 @@
     </form>
 
     <!-- Team Footer (Subtle & Centered) -->
-    <div class="team-footer" style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border-subtle); text-align: center;">
+    <div class="team-footer"
+      style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border-subtle); text-align: center;">
       <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6; font-weight: 500;">
-        <span class="lang-en"><strong>Mental Health Clinician:</strong> Mr. Robert Shields</span>
-        <span class="lang-es"><strong>Especialista de Salud Mental:</strong> Sr. Robert Shields</span>
-        <br>
-        <span class="lang-en"><strong>Wellness Interns:</strong> Ms. Hajara Fofana, Ms. Nicole Perez, Ms. Rylie Rader, Ms. Ashley</span>
-        <span class="lang-es"><strong>Pasantes de Bienestar:</strong> Srta. Hajara Fofana, Srta. Nicole Perez, Srta. Rylie Rader, Srta. Ashley</span>
+        <span class="lang-en"><strong>Mental Health Clinician:</strong> Mr. Robert Shields, LCSW</span>
+        <span class="lang-es"><strong>Especialista de Salud Mental:</strong> Robert Shields, LCSW</span>
       </p>
     </div>
 
