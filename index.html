@@ -6,6 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wellness Center Request</title>
 
+  <meta name="description" content="Submit a private request for a check-in or schedule a break with the Fremont Wellness Center. A safe, supportive, and confidential space.">
+  <meta name="author" content="Fremont Wellness Team">
+
+  <!-- Open Graph / School Messengers -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Fremont Wellness Center Visit Request">
+  <meta property="og:description" content="Submit a private request for a check-in or schedule a break with the Wellness Team. Safe, supportive, and confidential.">
+  <meta property="og:site_name" content="Fremont Wellness Center">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -805,6 +814,43 @@
         height: 120px;
       }
     }
+
+    /* Calendar Card & Container */
+    .calendar-card {
+      background: #faf8f5;
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 32px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .calendar-card h3 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      color: var(--primary-color);
+      font-size: 18px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .calendar-container {
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+      background: #faf8f5;
+    }
+
+    .calendar-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
   </style>
 </head>
 
@@ -971,6 +1017,18 @@
 
     </form>
 
+    <!-- Upcoming Activities Calendar -->
+    <div class="calendar-card">
+      <h3>
+        <span>📅</span>
+        <span class="lang-en">Upcoming Wellness Activities</span>
+        <span class="lang-es">Próximas Actividades de Bienestar</span>
+      </h3>
+      <div class="calendar-container">
+        <iframe src="https://calendar.google.com/calendar/embed?height=400&amp;wkst=1&amp;bgcolor=%23faf8f5&amp;ctz=America%2FLos_Angeles&amp;mode=AGENDA&amp;showTitle=0&amp;showNav=1&amp;showDate=1&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;src=c_5a79d93ae6ebaece6806f037da21e481d3dea24f3f226fbf1e73c4fb50a1d92a%40group.calendar.google.com&amp;color=%231a5121" style="border: 0" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
+      </div>
+    </div>
+
     <!-- Team Footer (Subtle & Centered) -->
     <div class="team-footer"
       style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border-subtle); text-align: center;">
@@ -1107,6 +1165,7 @@
       document.getElementById('btn-en').classList.remove('active');
       document.getElementById('btn-es').classList.remove('active');
       document.getElementById('btn-' + lang).classList.add('active');
+      document.documentElement.lang = lang; // Dynamic lang sync for screen readers and accessibility
     }
 
     // --- Format Input ---
