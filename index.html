@@ -4,48 +4,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wellness Center Request</title>
+  <title>Fremont Wellness Center Visit Request</title>
 
   <meta name="description" content="Submit a private request for a check-in or schedule a break with the Fremont Wellness Center. A safe, supportive, and confidential space.">
   <meta name="author" content="Fremont Wellness Team">
+
+  <!-- Favicon (Data URI + SVG fallback for crisp display on all browser tabs & mobile home screens) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='bgGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%232E7D32'/%3E%3Cstop offset='100%25' stop-color='%231B5E20'/%3E%3C/linearGradient%3E%3ClinearGradient id='accentGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23FFF6D6'/%3E%3Cstop offset='100%25' stop-color='%23FBC02D'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='18' fill='url(%23bgGrad)'/%3E%3Crect x='2' y='2' width='60' height='60' rx='16' fill='none' stroke='url(%23accentGrad)' stroke-width='2' opacity='0.4'/%3E%3Cg fill='%23FFFFFF'%3E%3Cellipse cx='32' cy='41' rx='11' ry='8.5'/%3E%3Ccircle cx='18' cy='26' r='4.2'/%3E%3Ccircle cx='27' cy='20.5' r='4.5'/%3E%3Ccircle cx='37' cy='20.5' r='4.5'/%3E%3Ccircle cx='46' cy='26' r='4.2'/%3E%3C/g%3E%3Cpath d='M32 37.5 C30.5 35 27.5 36 27.5 38 C27.5 39.5 32 42.5 32 42.5 C32 42.5 36.5 39.5 36.5 38 C36.5 36 33.5 35 32 37.5 Z' fill='%23FBC02D'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
 
   <!-- Open Graph / School Messengers -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Fremont Wellness Center Visit Request">
   <meta property="og:description" content="Submit a private request for a check-in or schedule a break with the Wellness Team. Safe, supportive, and confidential.">
-  <meta property="og:site_name" content="Fremont Wellness Center">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;500;600;700&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      /* Warm Wellness Palette */
-      --primary-color: #1a5121;
-      --secondary-color: #2E7D32;
-      --accent-color: #FBC02D;
+      /* Fremont brand greens — softened for calm, kept dark enough for AA contrast */
+      --school-green: #1B5E20;
+      --school-green-dark: #123F16;
+      --school-green-mid: #2E7D32;
+      --school-green-light: #4CAF50;
+      --school-yellow: #FBC02D;
+      --school-yellow-light: #FFF6D6;
+      --school-yellow-dark: #8A6A14;
 
-      --bg-surface: #faf7f2;
-      --card-bg: #ffffff;
+      --bg-surface: #EDF2EC;      /* soft sage */
+      --card-bg: #FFFFFF;
 
-      --border-subtle: #e8e2da;
+      --border-soft: #DCE5DC;
+      --border-input: #C6D3C8;
       --border-focus: #1B5E20;
 
-      --text-main: #1a1a1a;
-      --text-muted: #6b7280;
+      --text-main: #24312A;       /* deep green-charcoal */
+      --text-muted: #5B6B60;      /* AA on white & sage */
+      --text-light: #FFFFFF;
 
-      --ring-color: rgba(46, 125, 50, 0.2);
+      /* Urgency hues — matched lightness/chroma so red doesn't shout */
+      --u-red: #B9524E;
+      --u-red-deep: #8F3733;
+      --u-red-bg: #FBF2F1;
+      --u-red-chip: #F6E6E4;
+      --u-amber: #B98A24;
+      --u-amber-deep: #77590E;
+      --u-amber-bg: #FCF7EA;
+      --u-amber-chip: #F6EDD3;
+      --u-green: #3B7D46;
+      --u-green-deep: #26592F;
+      --u-green-bg: #EFF6F0;
+      --u-green-chip: #E2EFE4;
 
-      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-      --shadow-premium: 0 20px 40px -12px rgba(27, 94, 32, 0.10), 0 0 0 1px rgba(0, 0, 0, 0.02);
+      --shadow-card: 0 2px 4px rgba(18, 63, 22, 0.04), 0 24px 50px -16px rgba(18, 63, 22, 0.22);
+      --shadow-lift: 0 4px 12px rgba(18, 63, 22, 0.08);
 
-      --error-color: #ef4444;
-      --success-color: #22c55e;
+      --error-color: #C0362C;
+      --success-color: #2E7D32;
+
+      --ring: 0 0 0 4px rgba(46, 125, 50, 0.18);
     }
 
     * {
@@ -55,250 +75,289 @@
     }
 
     body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background-color: var(--bg-surface);
+      font-family: 'Nunito', system-ui, sans-serif;
+      background-color: #E3EDE2;
+      /* soft sage wash with a warm glow at the top */
       background-image:
-        radial-gradient(circle at 20% 20%, rgba(76, 175, 80, 0.04) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(251, 192, 45, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(139, 195, 74, 0.02) 0%, transparent 70%);
+        radial-gradient(ellipse 120% 60% at 50% -10%, rgba(251, 192, 45, 0.14), transparent 60%),
+        linear-gradient(180deg, #DCE9DB 0%, #E7F0E5 45%, #EDF2EC 100%);
+      background-attachment: fixed;
       color: var(--text-main);
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      justify-content: flex-start;
       align-items: center;
       min-height: 100vh;
-      padding: 24px;
+      padding: 40px 20px;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      position: relative;
     }
 
-    /* Ambient Floating Orbs */
-    .orb-1,
-    .orb-2,
-    .orb-3 {
+    /* Ambient Breathing Orbs in Background */
+    .bg-orb {
       position: fixed;
       border-radius: 50%;
-      pointer-events: none;
-      filter: blur(80px);
-      opacity: 0.5;
+      filter: blur(90px);
       z-index: 0;
+      pointer-events: none;
+      opacity: 0.35;
+      animation: floatOrb 16s ease-in-out infinite alternate;
     }
 
-    .orb-1 {
-      width: 350px;
-      height: 350px;
-      background: rgba(76, 175, 80, 0.12);
+    .bg-orb-1 {
+      width: 380px;
+      height: 380px;
       top: -80px;
-      left: -80px;
-      animation: orbFloat1 18s ease-in-out infinite;
+      left: 8%;
+      background: radial-gradient(circle, rgba(76, 175, 80, 0.35), transparent 70%);
     }
 
-    .orb-2 {
-      width: 280px;
-      height: 280px;
-      background: rgba(251, 192, 45, 0.10);
-      bottom: -60px;
-      right: -60px;
-      animation: orbFloat2 22s ease-in-out infinite;
+    .bg-orb-2 {
+      width: 420px;
+      height: 420px;
+      bottom: -100px;
+      right: 8%;
+      background: radial-gradient(circle, rgba(251, 192, 45, 0.28), transparent 70%);
+      animation-delay: -8s;
     }
 
-    .orb-3 {
-      width: 200px;
-      height: 200px;
-      background: rgba(139, 195, 74, 0.08);
-      top: 40%;
-      left: 60%;
-      animation: orbFloat3 26s ease-in-out infinite;
+    @keyframes floatOrb {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(30px, -25px) scale(1.06); }
+      100% { transform: translate(-25px, 20px) scale(0.96); }
     }
 
-    @keyframes orbFloat1 {
+    a { color: var(--school-green); }
+    a:hover { color: var(--school-green-dark); }
 
-      0%,
-      100% {
-        transform: translate(0, 0) scale(1);
-      }
-
-      33% {
-        transform: translate(40px, 30px) scale(1.05);
-      }
-
-      66% {
-        transform: translate(-20px, 50px) scale(0.95);
-      }
-    }
-
-    @keyframes orbFloat2 {
-
-      0%,
-      100% {
-        transform: translate(0, 0) scale(1);
-      }
-
-      33% {
-        transform: translate(-30px, -40px) scale(1.08);
-      }
-
-      66% {
-        transform: translate(20px, -20px) scale(0.92);
-      }
-    }
-
-    @keyframes orbFloat3 {
-
-      0%,
-      100% {
-        transform: translate(0, 0) scale(1);
-      }
-
-      33% {
-        transform: translate(-50px, 20px) scale(1.1);
-      }
-
-      66% {
-        transform: translate(30px, -30px) scale(0.9);
-      }
-    }
-
+    /* Main Card */
     .container {
       background: var(--card-bg);
       border-radius: 24px;
-      padding: 48px;
       width: 100%;
-      max-width: 750px;
-      box-shadow: var(--shadow-premium);
+      max-width: 640px;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-card);
       position: relative;
       overflow: hidden;
-      animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: cardIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
       z-index: 1;
+      padding: 44px 36px 32px;
+      margin-bottom: 28px;
     }
 
-    @keyframes slideUpFade {
-      from {
-        opacity: 0;
-        transform: translateY(30px) scale(0.98);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: linear-gradient(90deg, var(--school-green), var(--school-green-light) 55%, var(--school-yellow));
     }
 
-    /* Elegant Language Toggle */
+    @keyframes cardIn {
+      0% { opacity: 0; transform: translateY(18px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Sliding Language Toggle */
     .lang-toggle-wrapper {
       display: flex;
       justify-content: center;
-      margin-bottom: 32px;
+      margin-bottom: 28px;
       position: relative;
       z-index: 2;
     }
 
     .lang-toggle {
+      position: relative;
       display: inline-flex;
-      background: #faf8f5;
-      border: 1px solid var(--border-subtle);
+      background: #E5ECE4;
       border-radius: 100px;
       padding: 4px;
-      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
+      border: 1px solid #D2E0D1;
+    }
+
+    .lang-pill-bg {
+      position: absolute;
+      top: 4px;
+      bottom: 4px;
+      left: 4px;
+      width: calc(50% - 4px);
+      background: white;
+      border-radius: 100px;
+      box-shadow: 0 2px 6px rgba(18, 63, 22, 0.12);
+      transition: transform 0.3s cubic-bezier(0.34, 1.4, 0.64, 1);
+    }
+
+    body.lang-es .lang-pill-bg {
+      transform: translateX(100%);
     }
 
     .lang-btn {
+      position: relative;
+      z-index: 1;
       background: transparent;
       border: none;
-      padding: 8px 24px;
+      min-height: 40px;
+      padding: 8px 22px;
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 800;
       color: var(--text-muted);
       border-radius: 100px;
       cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      font-family: 'Inter', sans-serif;
+      transition: color 0.25s ease;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .lang-btn:focus-visible {
+      outline: none;
+      box-shadow: var(--ring);
     }
 
     .lang-btn.active {
-      background: white;
-      color: var(--primary-color);
-      box-shadow: var(--shadow-sm), 0 0 0 1px rgba(0, 0, 0, 0.02);
+      color: var(--school-green);
     }
 
-    body.lang-en .lang-es {
-      display: none !important;
-    }
+    body.lang-en .lang-es { display: none !important; }
+    body.lang-es .lang-en { display: none !important; }
 
-    body.lang-es .lang-en {
-      display: none !important;
-    }
-
-    /* Beautiful Headers */
+    /* Header */
     .header {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 28px;
       position: relative;
       z-index: 2;
     }
 
-    .header-illustration {
-      margin-bottom: 16px;
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--school-yellow-light);
+      border: 1px solid #F0DF9E;
+      color: #6B5310;
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-weight: 800;
+      font-size: 13.5px;
+      letter-spacing: 0.02em;
+      margin-bottom: 14px;
+      transition: transform 0.2s ease;
     }
 
-    .header-illustration svg {
-      width: 72px;
-      height: 72px;
-      filter: drop-shadow(0 4px 12px rgba(27, 94, 32, 0.12));
+    .header-badge:hover {
+      transform: scale(1.03);
     }
 
     .header h1 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 32px;
-      font-weight: 800;
-      color: var(--primary-color);
-      margin-bottom: 12px;
-      letter-spacing: -0.02em;
+      font-size: 30px;
+      font-weight: 900;
+      color: var(--school-green);
+      margin-bottom: 10px;
+      letter-spacing: -0.015em;
+      line-height: 1.18;
+      text-wrap: balance;
     }
 
     .header p {
       font-size: 16.5px;
       color: var(--text-muted);
-      font-weight: 500;
-      line-height: 1.5;
-      font-style: italic;
+      font-weight: 700;
     }
 
-    /* Form Layout & Spacing */
+    /* "Just so you know" note — supportive, not a warning */
     .info-alert {
-      background: linear-gradient(135deg, #fef9f0, #fff8ee);
-      border: 1px solid #f0dfc4;
-      border-left: 4px solid #e8a74e;
-      border-radius: 12px;
-      padding: 20px 20px 20px 24px;
-      margin-bottom: 28px;
+      background: #FBF8EE;
+      border: 1px solid #EBE0B8;
+      border-radius: 16px;
+      padding: 18px 20px;
+      margin-bottom: 24px;
       position: relative;
       z-index: 2;
     }
 
-    .info-alert-icon {
-      font-size: 20px;
-      margin-bottom: 8px;
-      display: block;
-    }
-
     .info-alert-text {
       font-size: 14.5px;
-      line-height: 1.7;
-      color: #7c5a2a;
+      line-height: 1.65;
+      color: #57512F;
+      font-weight: 600;
     }
 
     .info-alert-text strong {
-      color: #5c3d14;
-      font-weight: 700;
+      color: #443E1E;
+      font-weight: 800;
     }
 
-    /* Weekly Hours Display */
+    .info-alert-text .emergency-line {
+      display: block;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid #EBE0B8;
+    }
+
+    /* Weekly note from Mr. Shields */
+    .note-card {
+      display: none;
+      gap: 14px;
+      align-items: flex-start;
+      background: #EFF6F0;
+      border: 1px solid #D8E6DA;
+      border-radius: 16px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .note-card.visible {
+      display: flex;
+      animation: cardIn 0.4s ease-out both;
+    }
+
+    .note-avatar {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--school-green);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: 0.02em;
+      box-shadow: 0 2px 6px rgba(27, 94, 32, 0.2);
+    }
+
+    .note-body { flex: 1; }
+
+    .note-label {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: var(--school-green-mid);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+    }
+
+    .note-text {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    /* Live Status */
     .hours-card {
-      background: #faf8f5;
-      border: 1px solid var(--border-subtle);
+      background: #F5F9F5;
+      border: 1px solid var(--border-soft);
       border-radius: 16px;
       padding: 16px 20px;
-      margin-bottom: 28px;
+      margin-bottom: 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -316,152 +375,177 @@
 
     .status-dot {
       --dot-color: var(--success-color);
-      --dot-ring: rgba(34, 197, 94, 0.2);
-      --dot-pulse: rgba(34, 197, 94, 0.4);
+      --dot-ring: rgba(46, 125, 50, 0.15);
+      --dot-pulse: rgba(46, 125, 50, 0.35);
 
       width: 12px;
       height: 12px;
       background: var(--dot-color);
       border-radius: 50%;
       box-shadow: 0 0 0 4px var(--dot-ring);
-      animation: pulse 2s infinite;
+      animation: pulse 2.4s infinite;
     }
 
-    /* Pulse Color Variants */
     .status-dot.red {
       --dot-color: var(--error-color);
-      --dot-ring: rgba(239, 68, 68, 0.2);
-      --dot-pulse: rgba(239, 68, 68, 0.4);
+      --dot-ring: rgba(192, 54, 44, 0.15);
+      --dot-pulse: rgba(192, 54, 44, 0.35);
     }
 
     .status-dot.yellow {
-      --dot-color: #f59e0b;
-      --dot-ring: rgba(245, 158, 11, 0.2);
-      --dot-pulse: rgba(245, 158, 11, 0.4);
+      --dot-color: #D97706;
+      --dot-ring: rgba(217, 119, 6, 0.15);
+      --dot-pulse: rgba(217, 119, 6, 0.35);
     }
 
     .status-dot.blue {
-      --dot-color: #3b82f6;
-      --dot-ring: rgba(59, 130, 246, 0.2);
-      --dot-pulse: rgba(59, 130, 246, 0.4);
+      --dot-color: #2563EB;
+      --dot-ring: rgba(37, 99, 235, 0.15);
+      --dot-pulse: rgba(37, 99, 235, 0.35);
     }
 
     .status-dot.purple {
-      --dot-color: #a855f7;
-      --dot-ring: rgba(168, 85, 247, 0.2);
-      --dot-pulse: rgba(168, 85, 247, 0.4);
+      --dot-color: #9333EA;
+      --dot-ring: rgba(147, 51, 234, 0.15);
+      --dot-pulse: rgba(147, 51, 234, 0.35);
     }
 
     .status-dot.green {
       --dot-color: var(--success-color);
-      --dot-ring: rgba(34, 197, 94, 0.2);
-      --dot-pulse: rgba(34, 197, 94, 0.4);
+      --dot-ring: rgba(46, 125, 50, 0.15);
+      --dot-pulse: rgba(46, 125, 50, 0.35);
     }
 
     @keyframes pulse {
-      0% {
-        box-shadow: 0 0 0 0 var(--dot-pulse);
-      }
-
-      70% {
-        box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
-      }
-
-      100% {
-        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-      }
+      0% { box-shadow: 0 0 0 0 var(--dot-pulse); }
+      70% { box-shadow: 0 0 0 9px rgba(0, 0, 0, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); }
     }
 
     .hours-card h3 {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      color: var(--primary-color);
-      font-size: 18px;
+      font-weight: 800;
+      color: var(--school-green-mid);
+      font-size: 17px;
     }
 
     .hours-card p {
-      font-size: 15px;
+      font-size: 14px;
       color: var(--text-main);
-      font-weight: 500;
+      font-weight: 600;
       line-height: 1.5;
     }
 
+    .hours-note {
+      font-size: 12.5px;
+      color: var(--text-muted) !important;
+      margin-top: 2px;
+      font-weight: 600;
+    }
+
+    /* Form */
     form {
       position: relative;
       z-index: 2;
     }
 
     .form-group {
-      margin-bottom: 28px;
+      margin-bottom: 26px;
     }
 
-    .form-group label {
+    .form-group label,
+    .form-group .group-label {
       display: block;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      font-size: 16px;
+      font-weight: 800;
+      font-size: 15.5px;
+      margin-bottom: 8px;
+      color: var(--school-green-mid);
+      letter-spacing: -0.005em;
+    }
+
+    .form-group .group-label {
+      font-size: 18px;
+      margin-bottom: 4px;
+      color: var(--school-green);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .group-label::after {
+      content: '';
+      flex: 1;
+      height: 3px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--school-yellow), transparent);
+      opacity: 0.6;
+    }
+
+    .group-hint {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-muted);
       margin-bottom: 12px;
-      color: var(--primary-color);
-      letter-spacing: -0.01em;
     }
 
     .input-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      gap: 18px;
     }
 
-    /* High-End Inputs */
     input[type="text"],
     textarea {
       width: 100%;
-      padding: 16px 20px;
-      background: #faf8f5;
-      border: 1px solid var(--border-subtle);
-      border-radius: 14px;
-      font-family: 'Inter', sans-serif;
+      min-height: 50px;
+      padding: 13px 16px;
+      background: #FAFCFA;
+      border: 1.5px solid var(--border-input);
+      border-radius: 12px;
+      font-family: 'Nunito', sans-serif;
       font-size: 16px;
-      font-weight: 500;
+      font-weight: 700;
       color: var(--text-main);
-      transition: all 0.2s ease;
-      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.01);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, transform 0.15s ease;
     }
 
     textarea {
       resize: vertical;
-      min-height: 70px;
-      line-height: 1.5;
+      min-height: 96px;
+      line-height: 1.55;
     }
 
     input[type="text"]::placeholder,
     textarea::placeholder {
-      color: #94a3b8;
-      font-weight: 400;
+      color: #98A79C;
+      font-weight: 600;
     }
 
     input[type="text"]:focus,
     textarea:focus {
       outline: none;
-      background: #ffffff;
-      border-color: var(--border-focus);
-      box-shadow: 0 0 0 4px var(--ring-color);
+      background: #FFFFFF;
+      border-color: var(--school-green-mid);
+      box-shadow: var(--ring);
+      transform: translateY(-1px);
     }
 
     input[type="text"]:hover:not(:focus),
     textarea:hover:not(:focus) {
-      border-color: #cbd5e1;
+      border-color: #9DB2A2;
     }
 
-    /* Premium Radio Cards (The "Stripe" look) */
+    /* Urgency cards — Tactile spring hover micro-interactions */
     .radio-group {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
+      border-radius: 16px;
     }
 
     .radio-label {
       position: relative;
       cursor: pointer;
+      display: block;
     }
 
     .radio-label input[type="radio"] {
@@ -473,78 +557,92 @@
     .radio-card {
       display: flex;
       align-items: flex-start;
-      padding: 20px;
-      background: #ffffff;
-      border: 2px solid var(--border-subtle);
+      gap: 14px;
+      min-height: 64px;
+      padding: 16px 48px 16px 16px;
+      background: #FFFFFF;
+      border: 2px solid var(--u-edge, var(--border-soft));
       border-radius: 16px;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: var(--shadow-sm);
+      transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease, transform 0.2s cubic-bezier(0.34, 1.4, 0.64, 1);
     }
 
-    .radio-label:hover .radio-card {
-      border-color: #cbd5e1;
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
+    @media (hover: hover) {
+      .radio-label:hover .radio-card {
+        border-color: var(--u-color, #A9BCAE);
+        box-shadow: 0 6px 18px -4px rgba(18, 63, 22, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .radio-label:hover .radio-emoji {
+        transform: scale(1.15) rotate(6deg);
+      }
     }
 
-    .radio-label input[type="radio"]:checked+.radio-card {
-      background: #f1fdf4;
-      border-color: var(--primary-color);
-      box-shadow: 0 4px 16px rgba(27, 94, 32, 0.08);
-      transform: translateY(-2px);
+    .radio-label:active .radio-card {
+      transform: scale(0.985);
     }
 
-    /* Checkmark on selected radio */
-    .radio-card {
-      position: relative;
+    /* Keyboard focus ring */
+    .radio-label input[type="radio"]:focus-visible + .radio-card {
+      outline: none;
+      box-shadow: var(--ring);
+      border-color: var(--school-green-mid);
+    }
+
+    /* Selected state — per-option hue via custom props */
+    .u-red { --u-color: var(--u-red); --u-deep: var(--u-red-deep); --u-bg: var(--u-red-bg); --u-chip: var(--u-red-chip); --u-edge: #EBD2D0; }
+    .u-amber { --u-color: var(--u-amber); --u-deep: var(--u-amber-deep); --u-bg: var(--u-amber-bg); --u-chip: var(--u-amber-chip); --u-edge: #EBDDB9; }
+    .u-green { --u-color: var(--u-green); --u-deep: var(--u-green-deep); --u-bg: var(--u-green-bg); --u-chip: var(--u-green-chip); --u-edge: #CBE0CF; }
+
+    .radio-label input[type="radio"]:checked + .radio-card {
+      background: var(--u-bg);
+      border-color: var(--u-color);
+      box-shadow: 0 0 0 1px var(--u-color), 0 4px 14px -2px rgba(18, 63, 22, 0.1);
     }
 
     .radio-card::after {
       content: '✓';
       position: absolute;
-      top: 12px;
+      top: 16px;
       right: 16px;
-      width: 24px;
-      height: 24px;
-      background: var(--primary-color);
+      width: 26px;
+      height: 26px;
+      background: var(--u-color, var(--school-green));
       color: white;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 13px;
-      font-weight: 700;
+      font-size: 14px;
+      font-weight: 900;
       opacity: 0;
-      transform: scale(0);
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transform: scale(0.6);
+      transition: opacity 0.2s ease, transform 0.25s cubic-bezier(0.34, 1.4, 0.64, 1);
     }
 
-    .radio-label input[type="radio"]:checked+.radio-card::after {
+    .radio-label input[type="radio"]:checked + .radio-card::after {
       opacity: 1;
       transform: scale(1);
     }
 
-    /* Emojis in a premium circular badge container */
     .radio-emoji {
-      font-size: 22px;
-      margin-right: 16px;
-      background: #ffffff;
-      border: 1px solid var(--border-subtle);
+      font-size: 20px;
+      background: var(--u-chip, #F4F7F4);
+      border: 1px solid transparent;
       border-radius: 50%;
       width: 44px;
       height: 44px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
       flex-shrink: 0;
-      transition: all 0.2s ease;
+      transition: transform 0.3s cubic-bezier(0.34, 1.5, 0.64, 1), background 0.2s ease;
     }
 
-    .radio-label input[type="radio"]:checked+.radio-card .radio-emoji {
-      border-color: rgba(27, 94, 32, 0.3);
-      background: #e8f5e9;
-      transform: scale(1.05);
+    .radio-label input[type="radio"]:checked + .radio-card .radio-emoji {
+      background: var(--u-chip);
+      border-color: transparent;
+      transform: scale(1.08);
     }
 
     .radio-content {
@@ -552,93 +650,106 @@
       padding-top: 2px;
     }
 
-    .radio-text {
-      font-weight: 500;
+    .radio-title {
+      display: block;
+      font-weight: 800;
       font-size: 16px;
-      line-height: 1.5;
+      line-height: 1.4;
       color: var(--text-main);
+      margin-bottom: 2px;
       transition: color 0.2s ease;
     }
 
-    .radio-label input[type="radio"]:checked+.radio-card .radio-text {
-      color: var(--primary-color);
+    .radio-text {
       font-weight: 600;
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--text-muted);
     }
 
-    /* Privacy Note */
+    .radio-label input[type="radio"]:checked + .radio-card .radio-title {
+      color: var(--u-deep);
+    }
+
+    .radio-label input[type="radio"]:checked + .radio-card .radio-text {
+      color: var(--text-main);
+    }
+
+    /* Privacy reassurance — sits right before the submit button */
     .privacy-note {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      margin-top: 16px;
-      padding: 12px;
-      background: #f5f9f5;
-      border-radius: 10px;
-      position: relative;
-      z-index: 2;
+      gap: 10px;
+      margin: 4px 0 16px;
+      padding: 13px 16px;
+      background: #EFF6F0;
+      border: 1px solid #D8E6DA;
+      border-radius: 12px;
     }
 
     .privacy-note svg {
-      width: 16px;
-      height: 16px;
+      width: 17px;
+      height: 17px;
       flex-shrink: 0;
-      color: var(--secondary-color);
+      color: var(--school-green-mid);
     }
 
     .privacy-note span {
-      font-size: 13px;
-      color: var(--text-muted);
-      font-weight: 500;
+      font-size: 13.5px;
+      color: #2A5232;
+      font-weight: 700;
     }
 
-    /* "App-like" Submit Button */
+    /* Submit Button with Gradient Shimmer */
     .submit-btn {
       width: 100%;
-      padding: 18px;
-      background: linear-gradient(135deg, #166534, #14532d);
+      min-height: 56px;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--school-green-mid), var(--school-green) 70%);
       color: white;
       border: none;
       border-radius: 14px;
-      font-family: 'Outfit', sans-serif;
+      font-family: 'Nunito', sans-serif;
       font-size: 18px;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 12px;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 8px 24px -4px rgba(20, 83, 45, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.2);
-      margin-top: 16px;
       position: relative;
       overflow: hidden;
+      transition: background 0.25s ease, transform 0.15s ease, box-shadow 0.25s ease;
+      box-shadow: 0 6px 18px -4px rgba(18, 63, 22, 0.4);
     }
 
-    .submit-btn::after {
+    .submit-btn::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: -100%;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
-      transform: skewX(-20deg);
-      transition: 0.5s;
+      top: 0; left: -100%;
+      width: 60%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+      transition: left 0.75s ease;
     }
 
-    .submit-btn:hover::after {
-      left: 150%;
+    .submit-btn:hover::before {
+      left: 140%;
     }
 
     .submit-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 32px -4px rgba(20, 83, 45, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+      background: linear-gradient(135deg, var(--school-green-light), var(--school-green-mid) 70%);
+      box-shadow: 0 8px 22px -4px rgba(18, 63, 22, 0.45);
+    }
+
+    .submit-btn:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px #fff, 0 0 0 6px var(--school-green-mid);
     }
 
     .submit-btn:active {
-      transform: translateY(1px);
-      box-shadow: 0 4px 12px rgba(20, 83, 45, 0.4);
+      transform: scale(0.985);
+      box-shadow: 0 3px 10px -4px rgba(18, 63, 22, 0.4);
     }
 
     /* Spinner */
@@ -653,19 +764,17 @@
     }
 
     @keyframes spin {
-      100% {
-        transform: rotate(360deg);
-      }
+      100% { transform: rotate(360deg); }
     }
 
-    /* Success Screen */
+    /* Success Screen with Gentle Floating Sparkles */
     .success-screen {
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(10px);
       border-radius: 24px;
       display: flex;
@@ -678,6 +787,11 @@
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.4s ease;
+      overflow: hidden;
+    }
+
+    .success-screen:focus {
+      outline: none;
     }
 
     .success-screen.active {
@@ -685,100 +799,259 @@
       pointer-events: auto;
     }
 
-    .success-icon {
-      font-size: 72px;
+    .success-check {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: #EFF6F0;
+      border: 2.5px solid #C9DECC;
+      color: var(--school-green-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin-bottom: 24px;
-      animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-      transform: scale(0);
-      filter: drop-shadow(0 10px 15px rgba(34, 197, 94, 0.2));
+      box-shadow: 0 6px 20px rgba(46, 125, 50, 0.15);
+      position: relative;
     }
 
-    @keyframes popIn {
-      100% {
-        transform: scale(1);
-      }
+    .success-check svg {
+      width: 46px;
+      height: 46px;
+    }
+
+    .success-screen.active .check-path {
+      stroke-dasharray: 30;
+      stroke-dashoffset: 30;
+      animation: drawCheck 0.6s ease-out 0.2s forwards;
+    }
+
+    @keyframes drawCheck {
+      to { stroke-dashoffset: 0; }
     }
 
     .success-title {
-      font-family: 'Outfit', sans-serif;
       font-size: 32px;
-      color: var(--primary-color);
-      font-weight: 800;
-      margin-bottom: 12px;
-      letter-spacing: -0.02em;
+      color: var(--school-green);
+      font-weight: 900;
+      margin-bottom: 10px;
     }
 
     .success-desc {
-      font-size: 16px;
+      font-size: 16.5px;
       color: var(--text-muted);
       line-height: 1.6;
       margin-bottom: 28px;
+      font-weight: 700;
     }
 
     .submit-another-btn {
-      padding: 14px 36px;
-      background: linear-gradient(135deg, #166534, #14532d);
-      color: white;
-      border: none;
+      min-height: 50px;
+      padding: 14px 32px;
+      background: #FFFFFF;
+      color: var(--school-green);
+      border: 2px solid var(--school-green);
       border-radius: 12px;
-      font-family: 'Outfit', sans-serif;
+      font-family: 'Nunito', sans-serif;
       font-size: 16px;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 6px 20px -4px rgba(20, 83, 45, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
     }
 
     .submit-another-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 28px -4px rgba(20, 83, 45, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+      background: #EFF6F0;
+      box-shadow: 0 4px 12px rgba(27, 94, 32, 0.12);
+    }
+
+    .submit-another-btn:focus-visible {
+      outline: none;
+      box-shadow: var(--ring);
     }
 
     .submit-another-btn:active {
-      transform: translateY(1px);
-      box-shadow: 0 4px 12px rgba(20, 83, 45, 0.3);
+      transform: scale(0.98);
     }
 
-    /* Error UI */
+    /* Gentle inline error */
+    .form-error {
+      display: none;
+      align-items: flex-start;
+      gap: 10px;
+      background: #FDF3F2;
+      border: 1.5px solid #E9C7C3;
+      color: var(--u-red-deep);
+      border-radius: 12px;
+      padding: 13px 16px;
+      margin-bottom: 16px;
+      font-size: 14.5px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .form-error.visible {
+      display: flex;
+      animation: cardIn 0.3s ease-out both;
+    }
+
+    /* Error shakes */
     .error-shake {
       animation: shake 0.5s cubic-bezier(.36, .07, .19, .97) both;
       border-color: var(--error-color) !important;
-      background: #fef2f2 !important;
+      background: #FDF3F2 !important;
     }
 
     @keyframes shake {
+      10%, 90% { transform: translate3d(-1px, 0, 0); }
+      20%, 80% { transform: translate3d(2px, 0, 0); }
+      30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+      40%, 60% { transform: translate3d(4px, 0, 0); }
+    }
 
-      10%,
-      90% {
-        transform: translate3d(-1px, 0, 0);
-      }
+    /* Inside the Wellness Center - Interactive Chips */
+    .inside-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-soft);
+      border-radius: 24px;
+      width: 100%;
+      max-width: 640px;
+      padding: 24px 28px;
+      box-shadow: var(--shadow-lift);
+      margin-bottom: 28px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
 
-      20%,
-      80% {
-        transform: translate3d(2px, 0, 0);
-      }
+    .inside-card h3 {
+      font-weight: 800;
+      color: var(--school-green-mid);
+      font-size: 17px;
+      margin-bottom: 4px;
+    }
 
-      30%,
-      50%,
-      70% {
-        transform: translate3d(-4px, 0, 0);
-      }
+    .inside-card .inside-sub {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
 
-      40%,
-      60% {
-        transform: translate3d(4px, 0, 0);
+    .inside-chips {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .inside-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: #F5F9F5;
+      border: 1px solid var(--border-soft);
+      border-radius: 100px;
+      padding: 8px 15px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-main);
+      cursor: default;
+      user-select: none;
+      transition: transform 0.2s cubic-bezier(0.34, 1.5, 0.64, 1), box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .inside-chip:hover {
+      transform: translateY(-2px) scale(1.04);
+      background: #FFFFFF;
+      border-color: #B8D5BB;
+      box-shadow: 0 4px 12px rgba(27, 94, 32, 0.12);
+    }
+
+    /* Calendar card */
+    .bulletin-card {
+      background: #FCFAF4;
+      border: 1px solid #E4DFCE;
+      border-radius: 24px;
+      width: 100%;
+      max-width: 640px;
+      padding: 32px 28px 28px;
+      box-shadow: var(--shadow-card);
+      z-index: 1;
+      position: relative;
+    }
+
+    .bulletin-card h3 {
+      font-weight: 800;
+      color: var(--school-green-mid);
+      font-size: 18px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .calendar-container {
+      width: 100%;
+      height: 380px;
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid #E4DFCE;
+      background: #ffffff;
+    }
+
+    .calendar-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Footer */
+    .team-footer {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-soft);
+      text-align: center;
+    }
+
+    .team-footer p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-weight: 600;
+    }
+
+    .team-footer strong {
+      color: var(--text-main);
+    }
+
+    /* Reduced motion: calm by default for anyone who asks */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
       }
+      .status-dot, .bg-orb { animation: none; }
     }
 
     /* Mobile */
-    @media (max-width: 500px) {
+    @media (max-width: 600px) {
       body {
-        padding: 16px;
+        padding: 16px 12px 28px;
       }
 
-      .container {
-        padding: 32px 24px;
+      .container,
+      .bulletin-card {
+        padding: 24px 18px 22px;
         border-radius: 20px;
+      }
+
+      .header h1 {
+        font-size: 24px;
+      }
+
+      .header p {
+        font-size: 15px;
       }
 
       .input-row {
@@ -787,91 +1060,54 @@
       }
 
       .input-row .form-group {
-        margin-bottom: 20px;
+        margin-bottom: 22px;
       }
 
       .radio-card {
-        padding: 16px;
+        padding: 14px 44px 14px 14px;
       }
 
-      .header-illustration svg {
-        width: 56px;
-        height: 56px;
+      .radio-emoji {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
       }
 
-      .orb-1 {
-        width: 200px;
-        height: 200px;
+      .success-screen {
+        padding: 28px 20px;
       }
-
-      .orb-2 {
-        width: 160px;
-        height: 160px;
-      }
-
-      .orb-3 {
-        width: 120px;
-        height: 120px;
-      }
-    }
-
-    /* Calendar Card & Container */
-    .calendar-card {
-      background: #faf8f5;
-      border: 1px solid var(--border-subtle);
-      border-radius: 16px;
-      padding: 20px;
-      margin-top: 32px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .calendar-card h3 {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      color: var(--primary-color);
-      font-size: 18px;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .calendar-container {
-      width: 100%;
-      height: 400px;
-      overflow: hidden;
-      border-radius: 12px;
-      border: 1px solid var(--border-subtle);
-      background: #faf8f5;
-    }
-
-    .calendar-container iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
     }
   </style>
 </head>
 
 <body class="lang-en">
 
-  <div class="orb-1"></div>
-  <div class="orb-2"></div>
-  <div class="orb-3"></div>
+  <!-- Ambient Floating Orbs -->
+  <div class="bg-orb bg-orb-1" aria-hidden="true"></div>
+  <div class="bg-orb bg-orb-2" aria-hidden="true"></div>
 
+  <!-- Primary Visit Request Form Card -->
   <div class="container">
+
+    <!-- Language Controls (Sliding Pill Switcher) -->
     <div class="lang-toggle-wrapper">
-      <div class="lang-toggle">
-        <button class="lang-btn active" id="btn-en" onclick="setLang('en')">English</button>
-        <button class="lang-btn" id="btn-es" onclick="setLang('es')">Español</button>
+      <div class="lang-toggle" role="group" aria-label="Language / Idioma">
+        <div class="lang-pill-bg" aria-hidden="true"></div>
+        <button class="lang-btn active" id="btn-en" aria-pressed="true" onclick="setLang('en')">English</button>
+        <button class="lang-btn" id="btn-es" aria-pressed="false" onclick="setLang('es')">Español</button>
       </div>
     </div>
 
+    <!-- Heading -->
     <div class="header">
+      <div class="header-badge">
+        <span aria-hidden="true">🐾</span>
+        <span class="lang-en">Fremont Bulldogs</span>
+        <span class="lang-es">Bulldogs de Fremont</span>
+      </div>
       <h1>
-        <span class="lang-en">Fremont Wellness Center Visit Request</span>
-        <span class="lang-es">Solicitud de Visita al Centro de Bienestar de Fremont</span>
+        <span class="lang-en">Wellness Center Visit Request</span>
+        <span class="lang-es">Solicitud de Visita al Centro de Bienestar</span>
       </h1>
       <p>
         <span class="lang-en">This is your space. No judgment, just support.</span>
@@ -879,46 +1115,55 @@
       </p>
     </div>
 
-    <div class="info-alert">
-      <div class="info-alert-text lang-en">
-        <strong>Just so you know:</strong> Fill out this form if you'd like someone from the Wellness Center
-        to check in with you or to schedule a break. <br><br>
-        If this feels like an emergency, please don't use this form — talk to a trusted adult right away.
-        We'll do our best to reach out within 24 hours.
-      </div>
-      <div class="info-alert-text lang-es">
-        <span class="info-alert-icon">🤝</span>
-        <strong>Para que sepas:</strong> Completa este formulario si deseas que alguien del Centro de
-        Bienestar se comunique contigo o para programar un descanso. <br><br>
-        Si sientes que es una emergencia, no uses este formulario — habla con un adulto de confianza de inmediato.
-        Haremos todo lo posible por contactarte dentro de las 24 horas.
-      </div>
-    </div>
-
-    <!-- Editable Weekly Hours -->
+    <!-- Live Status -->
     <div class="hours-card">
-      <div class="hours-header">
-        <div class="status-dot" id="statusDot"></div>
+      <div class="hours-header" role="status">
+        <div class="status-dot" id="statusDot" aria-hidden="true"></div>
         <h3 class="lang-en" id="statusTextEn">Currently Open</h3>
         <h3 class="lang-es" id="statusTextEs">Actualmente Abierto</h3>
       </div>
       <p class="lang-en"><strong>Normal Hours:</strong> Monday - Friday, 8:00 AM - 4:30 PM</p>
       <p class="lang-es"><strong>Horario Normal:</strong> Lunes - Viernes, 8:00 AM - 4:30 PM</p>
-      <p class="hours-note lang-en" style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">*(Unless noted
-        above)*</p>
-      <p class="hours-note lang-es" style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">*(A menos que se
-        indique arriba)*</p>
+      <p class="hours-note lang-en">(Unless noted above)</p>
+      <p class="hours-note lang-es">(A menos que se indique arriba)</p>
     </div>
 
-    <form id="wellness-form" autocomplete="off">
+    <!-- Weekly note from Mr. Shields (fills from the Status sheet, cell C1) -->
+    <div class="note-card" id="noteCard" role="note">
+      <div class="note-avatar" aria-hidden="true">RS</div>
+      <div class="note-body">
+        <div class="note-label">
+          <span class="lang-en">A note from Mr. Shields</span>
+          <span class="lang-es">Una nota del Sr. Shields</span>
+        </div>
+        <div class="note-text" id="noteText"></div>
+      </div>
+    </div>
 
+    <!-- Supportive info note -->
+    <div class="info-alert" role="note">
+      <div class="info-alert-text lang-en">
+        <strong>Just so you know:</strong> Fill out this form if you'd like someone from the Wellness Center
+        to check in with you or to schedule a break. We'll do our best to reach out within 24 hours.
+        <span class="emergency-line">If this feels like an emergency, please don't use this form — talk to a trusted adult right away.</span>
+      </div>
+      <div class="info-alert-text lang-es">
+        <strong>Para que sepas:</strong> Completa este formulario si deseas que alguien del Centro de
+        Bienestar se comunique contigo o para programar un descanso. Haremos todo lo posible por contactarte dentro de las 24 horas.
+        <span class="emergency-line">Si sientes que es una emergencia, no uses este formulario — habla con un adulto de confianza de inmediato.</span>
+      </div>
+    </div>
+
+    <form id="wellness-form" autocomplete="off" novalidate>
+
+      <!-- Name -->
       <div class="input-row">
         <div class="form-group">
           <label for="firstName">
             <span class="lang-en">First Name *</span>
             <span class="lang-es">Nombre *</span>
           </label>
-          <input type="text" id="firstName" name="entry.1232825348" required placeholder="...">
+          <input type="text" id="firstName" name="entry.1232825348" required placeholder="..." autocapitalize="words" autocomplete="given-name">
         </div>
 
         <div class="form-group">
@@ -926,65 +1171,76 @@
             <span class="lang-en">Last Name *</span>
             <span class="lang-es">Apellido *</span>
           </label>
-          <input type="text" id="lastName" name="entry.248501466" required placeholder="...">
+          <input type="text" id="lastName" name="entry.248501466" required placeholder="..." autocapitalize="words" autocomplete="family-name">
         </div>
       </div>
 
+      <!-- Urgency -->
       <div class="form-group">
-        <label>
+        <span class="group-label" id="urgency-label">
           <span class="lang-en">How urgent is this check-in? *</span>
           <span class="lang-es">¿Qué tan urgente es tu necesidad de hablar? *</span>
-        </label>
+        </span>
+        <p class="group-hint">
+          <span class="lang-en">Whatever you pick is okay — this just helps us find you at the right time.</span>
+          <span class="lang-es">Cualquier opción está bien — solo nos ayuda a encontrarte en el momento adecuado.</span>
+        </p>
 
-        <div class="radio-group" id="urgency-group">
+        <div class="radio-group" id="urgency-group" role="radiogroup" aria-labelledby="urgency-label">
 
-          <!-- Option 1: Urgent -->
-          <label class="radio-label">
+          <!-- Option 1: Today -->
+          <label class="radio-label u-red">
             <input type="radio" name="entry.1925342282"
               value="🔴I need to see someone today. I am having a very hard time and cannot focus. Necesito ver a alguien hoy. Estoy pasando por un momento muy difícil y no puedo concentrarme."
               required>
             <div class="radio-card">
-              <div class="radio-emoji">🔴</div>
+              <div class="radio-emoji" aria-hidden="true">🔴</div>
               <div class="radio-content">
+                <span class="radio-title">
+                  <span class="lang-en">I need to see someone today.</span>
+                  <span class="lang-es">Necesito ver a alguien hoy.</span>
+                </span>
                 <div class="radio-text">
-                  <span class="lang-en">I need to see someone today. I am having a very hard time and cannot
-                    focus.</span>
-                  <span class="lang-es">Necesito ver a alguien hoy. Estoy pasando por un momento muy difícil y no puedo
-                    concentrarme.</span>
+                  <span class="lang-en">I am having a very hard time and cannot focus.</span>
+                  <span class="lang-es">Estoy pasando por un momento muy difícil y no puedo concentrarme.</span>
                 </div>
               </div>
             </div>
           </label>
 
           <!-- Option 2: Next Day -->
-          <label class="radio-label">
+          <label class="radio-label u-amber">
             <input type="radio" name="entry.1925342282"
               value="🟡I would like to check in sometime in the next day or two. It's important, but I am okay for right now. Me gustaría comunicarme en los próximos días. Es importante, pero por mientras estoy bien.">
             <div class="radio-card">
-              <div class="radio-emoji">🟡</div>
+              <div class="radio-emoji" aria-hidden="true">🟡</div>
               <div class="radio-content">
+                <span class="radio-title">
+                  <span class="lang-en">I would like to check in sometime in the next day or two.</span>
+                  <span class="lang-es">Me gustaría comunicarme en los próximos días.</span>
+                </span>
                 <div class="radio-text">
-                  <span class="lang-en">I would like to check in sometime in the next day or two. It's important, but I
-                    am okay for right now.</span>
-                  <span class="lang-es">Me gustaría comunicarme en los próximos días. Es importante, pero por mientras
-                    estoy bien.</span>
+                  <span class="lang-en">It's important, but I am okay for right now.</span>
+                  <span class="lang-es">Es importante, pero por mientras estoy bien.</span>
                 </div>
               </div>
             </div>
           </label>
 
           <!-- Option 3: No Rush -->
-          <label class="radio-label">
+          <label class="radio-label u-green">
             <input type="radio" name="entry.1925342282"
               value="🟢No rush. I just want to schedule a general check-in when you have free time or schedule a break. Sin prisa. Solo quiero programar una reunión general cuando tengas tiempo libre o simplemente programar un descanso.">
             <div class="radio-card">
-              <div class="radio-emoji">🟢</div>
+              <div class="radio-emoji" aria-hidden="true">🟢</div>
               <div class="radio-content">
+                <span class="radio-title">
+                  <span class="lang-en">No rush.</span>
+                  <span class="lang-es">Sin prisa.</span>
+                </span>
                 <div class="radio-text">
-                  <span class="lang-en">No rush. I just want to schedule a general check-in when you have free time or
-                    schedule a break.</span>
-                  <span class="lang-es">Sin prisa. Solo quiero programar una reunión general cuando tengas tiempo libre
-                    o simplemente programar un descanso.</span>
+                  <span class="lang-en">I just want to schedule a general check-in when you have free time or schedule a break.</span>
+                  <span class="lang-es">Solo quiero programar una reunión general cuando tengas tiempo libre o simplemente programar un descanso.</span>
                 </div>
               </div>
             </div>
@@ -992,6 +1248,7 @@
         </div>
       </div>
 
+      <!-- Optional comments -->
       <div class="form-group">
         <label for="optionalText">
           <span class="lang-en">Anything else you would like to tell us? (Optional)</span>
@@ -1000,55 +1257,57 @@
         <textarea id="optionalText" name="entry.417097114" placeholder="..."></textarea>
       </div>
 
+      <!-- Gentle validation message -->
+      <div class="form-error" id="formError" role="alert">
+        <span aria-hidden="true">👋</span>
+        <span class="lang-en" id="formErrorEn"></span>
+        <span class="lang-es" id="formErrorEs"></span>
+      </div>
+
+      <!-- Privacy reassurance -->
+      <div class="privacy-note">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 1C8.676 1 6 3.676 6 7v2H4v14h16V9h-2V7c0-3.324-2.676-6-6-6zm0 2c2.276 0 4 1.724 4 4v2H8V7c0-2.276 1.724-4 4-4zm-1 12.268V18h2v-2.732A2 2 0 1112 11a2 2 0 01-1 3.268z" />
+        </svg>
+        <span class="lang-en">Your request is private and only seen by the Wellness Team.</span>
+        <span class="lang-es">Tu solicitud es privada y solo la ve el equipo de Bienestar.</span>
+      </div>
+
+      <!-- Submit -->
       <button type="submit" class="submit-btn" id="submitBtn">
         <span class="btn-text lang-en">Submit Request</span>
         <span class="btn-text lang-es">Enviar Solicitud</span>
         <div class="spinner" id="btnSpinner"></div>
       </button>
 
-      <div class="privacy-note">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-          <path
-            d="M12 1C8.676 1 6 3.676 6 7v2H4v14h16V9h-2V7c0-3.324-2.676-6-6-6zm0 2c2.276 0 4 1.724 4 4v2H8V7c0-2.276 1.724-4 4-4zm-1 12.268V18h2v-2.732A2 2 0 0012 11a2 2 0 00-1 3.268z" />
-        </svg>
-        <span class="lang-en">Your request is private and only seen by the Wellness Team.</span>
-        <span class="lang-es">Tu solicitud es privada y solo la ve el equipo de Bienestar.</span>
+      <!-- Team Footer -->
+      <div class="team-footer">
+        <p>
+          <span class="lang-en"><strong>Mental Health Clinician:</strong> Mr. Robert Shields, LCSW</span>
+          <span class="lang-es"><strong>Especialista de Salud Mental:</strong> Robert Shields, LCSW</span>
+        </p>
       </div>
 
     </form>
 
-    <!-- Upcoming Activities Calendar -->
-    <div class="calendar-card">
-      <h3>
-        <span>📅</span>
-        <span class="lang-en">Upcoming Wellness Activities</span>
-        <span class="lang-es">Próximas Actividades de Bienestar</span>
-      </h3>
-      <div class="calendar-container">
-        <iframe src="https://calendar.google.com/calendar/embed?height=400&amp;wkst=1&amp;bgcolor=%23faf8f5&amp;ctz=America%2FLos_Angeles&amp;mode=AGENDA&amp;showTitle=0&amp;showNav=1&amp;showDate=1&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;src=c_5a79d93ae6ebaece6806f037da21e481d3dea24f3f226fbf1e73c4fb50a1d92a%40group.calendar.google.com&amp;color=%231a5121" style="border: 0" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
-      </div>
-    </div>
-
-    <!-- Team Footer (Subtle & Centered) -->
-    <div class="team-footer"
-      style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border-subtle); text-align: center;">
-      <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6; font-weight: 500;">
-        <span class="lang-en"><strong>Mental Health Clinician:</strong> Mr. Robert Shields, LCSW</span>
-        <span class="lang-es"><strong>Especialista de Salud Mental:</strong> Robert Shields, LCSW</span>
-      </p>
-    </div>
-
     <!-- Success Screen -->
-    <div class="success-screen" id="successScreen">
-      <div class="success-icon">✨</div>
+    <div class="success-screen" id="successScreen" role="status" aria-live="polite" tabindex="-1">
+
+      <div class="success-check" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path class="check-path" d="M4 12.5l5 5L20 6.5"></path>
+        </svg>
+      </div>
+
       <h2 class="success-title">
-        <span class="lang-en">Got it!</span>
-        <span class="lang-es">¡Entendido!</span>
+        <span class="lang-en">Got it.</span>
+        <span class="lang-es">Recibido.</span>
       </h2>
       <p class="success-desc">
-        <span class="lang-en">Your request has been received safely.<br>We will reach out to you soon.</span>
-        <span class="lang-es">Tu solicitud ha sido recibida.<br>Nos comunicaremos contigo pronto.</span>
+        <span class="lang-en">Your request has been received safely.<br>We will check in with you soon!</span>
+        <span class="lang-es">Tu solicitud ha sido recibida con éxito.<br>¡Nos comunicaremos contigo pronto!</span>
       </p>
+
       <button type="button" class="submit-another-btn" id="submitAnotherBtn">
         <span class="lang-en">Submit Another Request</span>
         <span class="lang-es">Enviar Otra Solicitud</span>
@@ -1057,15 +1316,66 @@
 
   </div>
 
+  <!-- What's inside the Wellness Center -->
+  <div class="inside-card">
+    <h3>
+      <span class="lang-en">Inside the Wellness Center right now</span>
+      <span class="lang-es">Dentro del Centro de Bienestar ahora</span>
+    </h3>
+    <p class="inside-sub">
+      <span class="lang-en">A break here can look like any of these — no talking required.</span>
+      <span class="lang-es">Un descanso aquí puede ser cualquiera de estas cosas — no hace falta hablar.</span>
+    </p>
+    <div class="inside-chips">
+      <span class="inside-chip"><span aria-hidden="true">🛋️</span><span class="lang-en">Cozy corner</span><span class="lang-es">Rincón acogedor</span></span>
+      <span class="inside-chip"><span aria-hidden="true">🧩</span><span class="lang-en">Fidgets &amp; puzzles</span><span class="lang-es">Fidgets y rompecabezas</span></span>
+      <span class="inside-chip"><span aria-hidden="true">🎨</span><span class="lang-en">Art &amp; coloring</span><span class="lang-es">Arte y colorear</span></span>
+      <span class="inside-chip"><span aria-hidden="true">🎧</span><span class="lang-en">Calming music</span><span class="lang-es">Música tranquila</span></span>
+      <span class="inside-chip"><span aria-hidden="true">💧</span><span class="lang-en">Water &amp; quiet</span><span class="lang-es">Agua y tranquilidad</span></span>
+    </div>
+  </div>
+
+  <!-- Calendar Card -->
+  <div class="bulletin-card">
+    <h3>
+      <span aria-hidden="true">📌</span>
+      <span class="lang-en">Upcoming Wellness Activities</span>
+      <span class="lang-es">Próximas Actividades de Bienestar</span>
+    </h3>
+
+    <div class="calendar-container">
+      <iframe title="Wellness Center calendar" src="https://calendar.google.com/calendar/embed?height=400&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FLos_Angeles&amp;mode=AGENDA&amp;showTitle=0&amp;showNav=1&amp;showDate=1&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;src=c_5a79d93ae6ebaece6806f037da21e481d3dea24f3f226fbf1e73c4fb50a1d92a%40group.calendar.google.com&amp;color=%231b5e20" style="border: 0" width="100%" height="400" frameborder="0" scrolling="no" loading="lazy"></iframe>
+    </div>
+  </div>
+
   <script>
-    // --- Hours Status ---
+    // --- Weekly note from Mr. Shields (Status sheet, Cell C1) ---
+    async function fetchWeeklyNote() {
+      try {
+        const noteUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQadc55Jy_BcBeMW7Y35vjqQoW0WWxULCjEZXrrzbAnkjC1VDdXiskQyOxmh6HO6HiqMLOMNb53Wj6C/pub?gid=526632501&single=true&output=csv&range=C1';
+        const res = await fetch(noteUrl + '&t=' + new Date().getTime(), { cache: 'no-store' });
+        let rawText = (await res.text() || '');
+        
+        if (rawText && !rawText.trim().startsWith('<')) {
+          let text = rawText.replace(/^"|"$/g, '').replace(/""/g, '"').trim();
+          if (text) {
+            document.getElementById('noteText').textContent = text;
+            document.getElementById('noteCard').classList.add('visible');
+          }
+        }
+      } catch (err) {
+        console.error('Could not load weekly note', err);
+      }
+    }
+    fetchWeeklyNote();
+
+    // --- Google Sheets Live Status (Cell A1) ---
     async function updateStatus() {
       const now = new Date();
-      const day = now.getDay(); // 0 is Sunday, 1 is Monday... 6 is Saturday
+      const day = now.getDay();
       const hour = now.getHours();
       const minutes = now.getMinutes();
 
-      // Open Mon-Fri 8:00 AM to 4:30 PM
       const isWeekday = day >= 1 && day <= 5;
       const pastOpenTime = hour > 8 || (hour === 8 && minutes >= 0);
       const beforeCloseTime = hour < 16 || (hour === 16 && minutes < 30);
@@ -1089,8 +1399,10 @@
           statusDot.classList.add(colorMode || 'green');
           statusTextEn.textContent = customMessage || 'Currently Open';
           statusTextEs.textContent = customMessage || 'Actualmente Abierto';
-          // If green mode or standard open, use primary color
-          const themeColor = colorMode ? `var(--${colorMode}-color)` : 'var(--primary-color)';
+
+          let themeColor = 'var(--school-green)';
+          if (colorMode === 'green') themeColor = 'var(--school-green)';
+
           statusTextEn.style.color = themeColor;
           statusTextEs.style.color = themeColor;
 
@@ -1099,76 +1411,65 @@
           statusTextEn.textContent = customMessage || 'Currently Closed';
           statusTextEs.textContent = customMessage || 'Actualmente Cerrado';
 
-          // Set fallback custom colors for warnings
-          const fallbackColor = colorMode ? `var(--${colorMode}-color)` : 'var(--error-color)';
-          let finalColor = fallbackColor;
+          let finalColor = 'var(--error-color)';
           if (colorMode === 'yellow') finalColor = '#d97706';
           if (colorMode === 'blue') finalColor = '#2563eb';
           if (colorMode === 'purple') finalColor = '#9333ea';
+          if (colorMode === 'red') finalColor = 'var(--error-color)';
 
           statusTextEn.style.color = finalColor;
           statusTextEs.style.color = finalColor;
         }
       };
 
-      // 1. Initial fast local render to prevent micro-lag
       applyDOM();
 
-      // --- Central Master Switch Check ---
       try {
-        // Enforce range=A1 so it only ever reads cell A1, ignoring data typed elsewhere in the sheet
         const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQadc55Jy_BcBeMW7Y35vjqQoW0WWxULCjEZXrrzbAnkjC1VDdXiskQyOxmh6HO6HiqMLOMNb53Wj6C/pub?gid=526632501&single=true&output=csv&range=A1';
-        const response = await fetch(sheetUrl + '&t=' + new Date().getTime(), {
-          cache: "no-store",
-          headers: { 'Cache-control': 'no-cache', 'Pragma': 'no-cache' }
-        });
+        const response = await fetch(sheetUrl + '&t=' + new Date().getTime(), { cache: "no-store" });
         const data = await response.text();
 
-        // Clean up the data (remove quotes, extra spaces, line breaks)
-        let sheetText = data ? data.replace(/["\r\n]/g, '').trim() : '';
+        if (data && !data.trim().startsWith('<')) {
+          let sheetText = data.replace(/["\r\n]/g, '').trim();
 
-        // If the cell contains anything other than 'AUTO' or empty, use it as a custom closed message
-        if (sheetText !== '' && sheetText.toUpperCase() !== 'AUTO') {
-          // Detect Emoji Color Command
-          const emojis = ['🔴', '🟡', '🔵', '🟣', '🟢'];
-          emojis.forEach(e => {
-            if (sheetText.startsWith(e)) {
-              if (e === '🔴') colorMode = 'red';
-              if (e === '🟡') colorMode = 'yellow';
-              if (e === '🔵') colorMode = 'blue';
-              if (e === '🟣') colorMode = 'purple';
-              if (e === '🟢') { colorMode = 'green'; isOpen = true; }
-              // Remove the emoji from the display text
-              sheetText = sheetText.replace(e, '').trim();
-            }
-          });
+          if (sheetText !== '' && sheetText.toUpperCase() !== 'AUTO') {
+            const emojis = ['🔴', '🟡', '🔵', '🟣', '🟢'];
+            emojis.forEach(e => {
+              if (sheetText.startsWith(e)) {
+                if (e === '🔴') colorMode = 'red';
+                if (e === '🟡') colorMode = 'yellow';
+                if (e === '🔵') colorMode = 'blue';
+                if (e === '🟣') colorMode = 'purple';
+                if (e === '🟢') { colorMode = 'green'; isOpen = true; }
+                sheetText = sheetText.replace(e, '').trim();
+              }
+            });
 
-          isOpen = colorMode === 'green' ? true : false;
-          customMessage = sheetText;
-
-          // 2. Refresh the DOM if we got a remote override
-          applyDOM();
+            isOpen = colorMode === 'green' ? true : false;
+            customMessage = sheetText;
+            applyDOM();
+          }
         }
       } catch (err) {
-        console.error('Could not fetch central status:', err);
-        // Silently fall back to normal automated hours if offline
+        console.error('Could not fetch status:', err);
       }
     }
 
     updateStatus();
     setInterval(updateStatus, 60000);
 
-    // --- UI Controls ---
+    // --- UI Translation Control ---
     function setLang(lang) {
-      document.body.classList.remove('lang-en', 'lang-es');
-      document.body.classList.add('lang-' + lang);
+      document.body.className = 'lang-' + lang;
       document.getElementById('btn-en').classList.remove('active');
       document.getElementById('btn-es').classList.remove('active');
       document.getElementById('btn-' + lang).classList.add('active');
-      document.documentElement.lang = lang; // Dynamic lang sync for screen readers and accessibility
+      document.getElementById('btn-en').setAttribute('aria-pressed', lang === 'en');
+      document.getElementById('btn-es').setAttribute('aria-pressed', lang === 'es');
+      document.documentElement.lang = lang;
     }
 
-    // --- Format Input ---
+    // --- Input Formats ---
     const firstName = document.getElementById('firstName');
     const lastName = document.getElementById('lastName');
 
@@ -1178,7 +1479,6 @@
       }
     }
 
-    // Jump between inputs quickly
     firstName.addEventListener('blur', capitalize);
     firstName.addEventListener('keydown', e => {
       if (e.key === 'Enter') { e.preventDefault(); lastName.focus(); }
@@ -1197,26 +1497,33 @@
     const btnSpinner = document.getElementById('btnSpinner');
     const successScreen = document.getElementById('successScreen');
     const urgencyGroup = document.getElementById('urgency-group');
+    const formError = document.getElementById('formError');
+    const formErrorEn = document.getElementById('formErrorEn');
+    const formErrorEs = document.getElementById('formErrorEs');
+
+    form.addEventListener('input', () => formError.classList.remove('visible'));
 
     let autoResetTimer = null;
 
-    // Shared reset function for both auto-timer and manual button
     function resetForm() {
       clearTimeout(autoResetTimer);
       form.reset();
       successScreen.classList.remove('active');
+      formError.classList.remove('visible');
       btnSpinner.style.display = 'none';
 
-      // Restore the correct language button text
       btnTextEn.style.display = '';
       btnTextEs.style.display = '';
 
       submitBtn.style.pointerEvents = 'auto';
       submitBtn.style.opacity = '1';
       window.scrollTo(0, 0);
+
+      setTimeout(() => {
+        firstName.focus();
+      }, 100);
     }
 
-    // "Submit Another Request" button
     document.getElementById('submitAnotherBtn').addEventListener('click', resetForm);
 
     form.addEventListener('submit', function (e) {
@@ -1238,20 +1545,32 @@
         urgencyGroup.classList.remove('error-shake');
       }, 500);
 
-      if (!isValid) return;
+      if (!isValid) {
+        const needName = !firstName.value.trim() || !lastName.value.trim();
+        const needChoice = !radioChecked;
+        if (needName && needChoice) {
+          formErrorEn.textContent = 'Almost there — add your name and pick whichever option feels right.';
+          formErrorEs.textContent = 'Casi listo — escribe tu nombre y elige la opción que mejor te parezca.';
+        } else if (needName) {
+          formErrorEn.textContent = 'Almost there — just add your name at the top.';
+          formErrorEs.textContent = 'Casi listo — solo falta tu nombre arriba.';
+        } else {
+          formErrorEn.textContent = 'Almost there — pick whichever option feels right. There\u2019s no wrong answer.';
+          formErrorEs.textContent = 'Casi listo — elige la opción que mejor te parezca. No hay respuesta incorrecta.';
+        }
+        formError.classList.add('visible');
+        return;
+      }
+      formError.classList.remove('visible');
 
-      // Loading state
       btnTextEn.style.display = 'none';
       btnTextEs.style.display = 'none';
       btnSpinner.style.display = 'block';
       submitBtn.style.pointerEvents = 'none';
       submitBtn.style.opacity = '0.8';
 
-      // Send Request
       const formData = new FormData(form);
       const encodedData = new URLSearchParams(formData).toString();
-
-      // Target Form Action URL (verified exact path)
       const actionUrl = 'https://docs.google.com/forms/d/e/1FAIpQLScMRPe4mLOhPaQNVtiJLQJAQlJMrjXExxro9tdYJwcvGpUAuA/formResponse';
 
       fetch(actionUrl, {
@@ -1263,18 +1582,22 @@
         body: encodedData
       })
         .then(() => {
-          // Show Success
           successScreen.classList.add('active');
 
-          // Auto-reset after 8 seconds (gives time to read)
-          autoResetTimer = setTimeout(resetForm, 8000);
+          const submitAnotherBtn = document.getElementById('submitAnotherBtn');
+          if (submitAnotherBtn) {
+            submitAnotherBtn.focus();
+          } else {
+            successScreen.focus();
+          }
+
+          autoResetTimer = setTimeout(resetForm, 10000);
         })
         .catch(err => {
           console.error('Submission failed', err);
           alert('Something went wrong. Please alert the staff.');
 
           btnSpinner.style.display = 'none';
-
           if (document.body.classList.contains('lang-en')) {
             btnTextEn.style.display = 'block';
           } else {
